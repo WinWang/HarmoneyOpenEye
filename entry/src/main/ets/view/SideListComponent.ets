@@ -1,5 +1,5 @@
-import { CommonConstants } from '../common/constants/CommonConstants';
-import type { SideListItem } from '../common/bean/SideListItem';
+import { CommonConstants } from '../constants/CommonConstants';
+import type { SideListItem } from '../bean/SideListItem';
 import CategoryViewModel from '../viewmodel/CategoryViewModel';
 
 /**

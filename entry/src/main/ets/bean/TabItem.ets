@@ -10,7 +10,7 @@ export class TabItem {
   /**
    * Tab item title.
    */
-  title: Resource;
+  title: string;
 
   /**
    * Image activated.

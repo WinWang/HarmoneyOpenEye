@@ -1,6 +1,20 @@
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/winwang/.ohos/config/auto_debug_HarmoneyOpenEye_com.winwang.myapplication_890086200300025242.cer",
+          "storePassword": "0000001A548AFC693FD83B38F1F8D4A20A79E48C3B698A6029BFD92240C6B761146CCFA1B5862EA61816",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001ADB49A836F2BBC004BBB86C9263066BD08BC418BB848A5DD6BE5DB399995BEE1FD00E5E289975",
+          "profile": "/Users/winwang/.ohos/config/auto_debug_HarmoneyOpenEye_com.winwang.myapplication_890086200300025242.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/winwang/.ohos/config/auto_debug_HarmoneyOpenEye_com.winwang.myapplication_890086200300025242.p12"
+        }
+      }
+    ],
     "compileSdkVersion": 9,
     "compatibleSdkVersion": 9,
     "products": [

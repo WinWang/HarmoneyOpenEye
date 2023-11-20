@@ -1,10 +1,15 @@
-import { TabItem } from '../common/bean/TabItem';
+import { TabItem } from '../bean/TabItem';
 
 /**
  * MainAbility的ViewModel
  */
 export class MainViewModel {
-  tabTitle = ["首页", "发现", "热门", "我的"]
+  tabTitle = [
+    { title: "首页", selIcon: $r('app.media.icon_sel_home'), unselIcon: $r('app.media.icon_unsel_home') },
+    { title: "发现", selIcon: $r('app.media.icon_sel_find'), unselIcon: $r('app.media.icon_unsel_find') },
+    { title: "热门", selIcon: $r('app.media.icon_sel_hot'), unselIcon: $r('app.media.icon_unsel_hot') },
+    { title: "我的", selIcon: $r('app.media.icon_sel_mine'), unselIcon: $r('app.media.icon_unsel_mine') }
+  ]
 
 
   /**
@@ -15,9 +20,9 @@ export class MainViewModel {
     for (let index = 0; index < this.tabTitle.length; index++) {
       let tabItem = new TabItem();
       tabItem.index = index;
-      tabItem.title = $r(this.tabTitle[index]);
-      tabItem.imageOriginal = $r('app.media.ic_tab_normal');
-      tabItem.imageActivated = $r('app.media.ic_tab_activated');
+      tabItem.title = this.tabTitle[index].title;
+      tabItem.imageOriginal = this.tabTitle[index].unselIcon;
+      tabItem.imageActivated = this.tabTitle[index].selIcon;
       tabItems.push(tabItem);
     }
     return tabItems;

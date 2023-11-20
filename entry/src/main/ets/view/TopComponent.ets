@@ -1,4 +1,4 @@
-import { CommonConstants } from '../common/constants/CommonConstants';
+import { CommonConstants } from '../constants/CommonConstants';
 
 /**
  * Category top component.

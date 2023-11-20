@@ -1,8 +1,8 @@
-import { CommonConstants } from '../common/constants/CommonConstants';
-import { SideListItem } from '../common/bean/SideListItem';
-import { TabItem } from '../common/bean/TabItem';
-import { DetailListItem } from '../common/bean/DetailListItem';
-import { DetailItemData } from '../common/bean/DetailItemData';
+import { CommonConstants } from '../constants/CommonConstants';
+import { SideListItem } from '../bean/SideListItem';
+import { TabItem } from '../bean/TabItem';
+import { DetailListItem } from '../bean/DetailListItem';
+import { DetailItemData } from '../bean/DetailItemData';
 
 /**
  * Category ability view model.
@@ -33,7 +33,7 @@ export class CategoryViewModel {
     for (let index = 0; index < CommonConstants.TAB_BAR_SIZE; index++) {
       let tabItem = new TabItem();
       tabItem.index = index;
-      tabItem.title = $r('app.string.tab_text');
+      tabItem.title = 'app.string.tab_text'
       tabItem.imageOriginal = $r('app.media.ic_tab_normal');
       tabItem.imageActivated = $r('app.media.ic_tab_activated');
       tabItems.push(tabItem);

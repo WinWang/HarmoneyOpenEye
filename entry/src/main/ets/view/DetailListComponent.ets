@@ -1,6 +1,6 @@
-import { CommonConstants } from '../common/constants/CommonConstants';
-import { DetailListItem } from '../common/bean/DetailListItem';
-import type { DetailItemData } from '../common/bean/DetailItemData';
+import { CommonConstants } from '../constants/CommonConstants';
+import { DetailListItem } from '../bean/DetailListItem';
+import type { DetailItemData } from '../bean/DetailItemData';
 import CategoryViewModel from '../viewmodel/CategoryViewModel';
 
 /**

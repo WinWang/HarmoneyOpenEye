@@ -1,8 +1,8 @@
 import { DetailListComponent } from '../view/DetailListComponent';
 import { SideListComponent } from '../view/SideListComponent';
 import { TopComponent } from '../view/TopComponent';
-import { CommonConstants } from '../common/constants/CommonConstants';
-import type { TabItem } from '../common/bean/TabItem';
+import { CommonConstants } from '../constants/CommonConstants';
+import type { TabItem } from '../bean/TabItem';
 import CategoryViewModel from '../viewmodel/CategoryViewModel';
 
 /**
