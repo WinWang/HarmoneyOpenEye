@@ -11,14 +11,13 @@ import { MinePage } from './mine/MinePage'
 @Component
 struct MainPage {
   @State selectedIndex: number = 0
-  @State text: number = 0
+
 
   build() {
     Column() {
-      Text(this.text.toString())
       Tabs({
         index: this.selectedIndex,
-        barPosition: BarPosition.End
+        barPosition: BarPosition.End,
       }) {
         ForEach(MainViewModel.getTabItems(), (item: TabItem, index: number) => {
           TabContent() {
@@ -33,12 +32,12 @@ struct MainPage {
             }
           }.tabBar(this.TabBottom(item, index))
         }, (item, index) => index + JSON.stringify(item))
-      }.barMode(BarMode.Fixed)
+      }
+      .barMode(BarMode.Fixed)
       .barWidth('100%')
       .barHeight($r('app.float.tab_bar_height'))
       .onChange((index: number) => {
         this.selectedIndex = index;
-        this.text++;
         console.log("index>>>" + this.selectedIndex)
       })
     }
