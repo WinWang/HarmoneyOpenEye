@@ -1,6 +1,6 @@
-import hilog from '@ohos.hilog'
 import { TabItem } from '../bean/TabItem'
 import { CommonConstants } from '../constants/CommonConstants'
+import { LogUtils } from '../utils/LogUtils'
 import MainViewModel from '../viewmodel/MainViewModel'
 import { FindPage } from './find/FindPage'
 import { HomePage } from './home/HomePage'
@@ -12,29 +12,35 @@ import { MinePage } from './mine/MinePage'
 struct MainPage {
   @State selectedIndex: number = 0
 
-
   build() {
     Column() {
       Tabs({
         index: this.selectedIndex,
         barPosition: BarPosition.End,
       }) {
-        ForEach(MainViewModel.getTabItems(), (item: TabItem, index: number) => {
-          TabContent() {
-            if (this.selectedIndex === 0) {
-              HomePage()
-            } else if (this.selectedIndex === 1) {
-              FindPage()
-            } else if (this.selectedIndex === 2) {
-              HotPage()
-            } else if (this.selectedIndex === 3) {
-              MinePage()
-            }
-          }.tabBar(this.TabBottom(item, index))
-        }, (item, index) => index + JSON.stringify(item))
+        TabContent() {
+          HomePage()
+        }
+        .tabBar(this.TabBottom(MainViewModel.tabTitle[0], 0))
+
+        TabContent() {
+          FindPage()
+        }
+        .tabBar(this.TabBottom(MainViewModel.tabTitle[1], 1))
+
+        TabContent() {
+          HotPage()
+        }
+        .tabBar(this.TabBottom(MainViewModel.tabTitle[3], 3))
+
+        TabContent() {
+          MinePage()
+        }
+        .tabBar(this.TabBottom(MainViewModel.tabTitle[3], 3))
       }
       .barMode(BarMode.Fixed)
       .barWidth('100%')
+      .scrollable(false)
       .barHeight($r('app.float.tab_bar_height'))
       .onChange((index: number) => {
         this.selectedIndex = index;
@@ -44,11 +50,11 @@ struct MainPage {
   }
 
   onPageShow() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'onPageShow');
+    LogUtils.logError("页面可见>>>>>>>>>>>>>>>>>>>>>>>>>>>>onPageShow")
   }
 
   onPageHide() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'onPageHide');
+    LogUtils.logError("页面不可见>>>>>>>>>>>>>>>>>>>>>>>>>>>>>onPageHide")
   }
 
   @Builder TabBottom(item: TabItem, index: number) {

@@ -9,6 +9,10 @@
       "value": "This ability loads CategoryPage."
     },
     {
+      "name": "internet_reason_desc",
+      "value": "申请网络权限"
+    },
+    {
       "name": "ability_label",
       "value": "Harmony开眼"
     },

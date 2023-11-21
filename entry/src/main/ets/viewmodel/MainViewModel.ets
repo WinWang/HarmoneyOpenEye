@@ -5,28 +5,31 @@ import { TabItem } from '../bean/TabItem';
  */
 export class MainViewModel {
   tabTitle = [
-    { title: "首页", selIcon: $r('app.media.icon_sel_home'), unselIcon: $r('app.media.icon_unsel_home') },
-    { title: "发现", selIcon: $r('app.media.icon_sel_find'), unselIcon: $r('app.media.icon_unsel_find') },
-    { title: "热门", selIcon: $r('app.media.icon_sel_hot'), unselIcon: $r('app.media.icon_unsel_hot') },
-    { title: "我的", selIcon: $r('app.media.icon_sel_mine'), unselIcon: $r('app.media.icon_unsel_mine') }
-  ]
-
-
-  /**
-   *首页Tab列表
-   */
-  getTabItems(): Array<TabItem> {
-    let tabItems: Array<TabItem> = [];
-    for (let index = 0; index < this.tabTitle.length; index++) {
-      let tabItem = new TabItem();
-      tabItem.index = index;
-      tabItem.title = this.tabTitle[index].title;
-      tabItem.imageOriginal = this.tabTitle[index].unselIcon;
-      tabItem.imageActivated = this.tabTitle[index].selIcon;
-      tabItems.push(tabItem);
+    {
+      index: 0,
+      title: "首页",
+      imageActivated: $r('app.media.icon_sel_home'),
+      imageOriginal: $r('app.media.icon_unsel_home')
+    },
+    {
+      index: 1,
+      title: "发现",
+      imageActivated: $r('app.media.icon_sel_find'),
+      imageOriginal: $r('app.media.icon_unsel_find')
+    },
+    {
+      index: 2,
+      title: "热门",
+      imageActivated: $r('app.media.icon_sel_hot'),
+      imageOriginal: $r('app.media.icon_unsel_hot')
+    },
+    {
+      index: 3,
+      title: "我的",
+      imageActivated: $r('app.media.icon_sel_mine'),
+      imageOriginal: $r('app.media.icon_unsel_mine')
     }
-    return tabItems;
-  }
+  ]
 }
 
 let mainViewModel = new MainViewModel();

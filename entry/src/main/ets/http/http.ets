@@ -25,7 +25,7 @@ interface HttpRequestConfig extends http.HttpRequestOptions {
   checkResultCode?: boolean; //是否检验响应结果码
   checkLoginState?: boolean //校验用户登陆状态
   needJumpToLogin?: boolean //是否需要跳转到登陆页面
-  url: string, //请求网络链接
+  url?: string, //请求网络链接
 }
 
 

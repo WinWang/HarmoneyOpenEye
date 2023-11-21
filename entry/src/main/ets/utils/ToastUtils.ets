@@ -1,7 +1,7 @@
 import promptAction from '@ohos.promptAction'
 
-class ToastUtils {
-  showToast(message: string, duration: number = 2000) {
+export class ToastUtils {
+  static showToast(message: string, duration: number = 2000) {
     try {
       promptAction.showToast({
         message: message,
@@ -13,7 +13,3 @@ class ToastUtils {
     }
   }
 }
-
-let toastUtils = new ToastUtils()
-
-export default toastUtils as ToastUtils

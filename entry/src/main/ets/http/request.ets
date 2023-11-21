@@ -1,4 +1,5 @@
-import ToastUtils from '../utils/ToastUtils';
+import http from '@ohos.net.http';
+import { ToastUtils } from '../utils/ToastUtils';
 import HttpBuilder from './http';
 
 //接口发送超时
@@ -8,16 +9,13 @@ const CONNECT_TIMEOUT = 100000
 
 
 const httpClient = new HttpBuilder({
-  url: 'http://localhost',
   readTimeout: READ_TIMEOUT,
   connectTimeout: CONNECT_TIMEOUT
 })
 
 
 export function errorHandler(error: any) {
-  if (error instanceof AxiosError) {
-    ToastUtils.showToast(error)
-  } else if (error != undefined && error.response != undefined && error.response.status) {
+  if (error != undefined && error.response != undefined && error.response.status) {
     switch (error.response.status) {
     // 401: 未登录
     // 未登录则跳转登录页面，并携带当前页面的路径
@@ -44,4 +42,6 @@ export function errorHandler(error: any) {
     }
   }
 }
+
+export default httpClient
 
