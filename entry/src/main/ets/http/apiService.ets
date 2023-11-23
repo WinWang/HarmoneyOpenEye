@@ -1,4 +1,7 @@
-import { homeModel } from '../bean/homeModel'
+import { AxiosRequestHeaders } from '@ohos/axios'
+import { homeModel } from '../model/homeModel'
+import AxiosHttpRequest from './AxiosHttp'
+import axiosClient from './AxiosRequest'
 import httpClient from './request'
 
 let baseUrl = "https://baobab.kaiyanapp.com/"
@@ -14,6 +17,16 @@ export function getHomeList(date: string = "") {
     extraData: { "date": date }
   })
 }
+
+export function getHomeListAxios(date: string = "") {
+  return axiosClient.get<homeModel>({
+    url: baseUrl + "api/v2/feed",
+    params: { "date": date }
+    // headers: { "Accept": "application/json" } as AxiosRequestHeaders
+  })
+}
+
+
 
 
 

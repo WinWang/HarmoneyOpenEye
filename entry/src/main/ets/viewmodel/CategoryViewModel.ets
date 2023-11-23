@@ -1,8 +1,8 @@
 import { CommonConstants } from '../constants/CommonConstants';
-import { SideListItem } from '../bean/SideListItem';
-import { TabItem } from '../bean/TabItem';
-import { DetailListItem } from '../bean/DetailListItem';
-import { DetailItemData } from '../bean/DetailItemData';
+import { SideListItem } from '../model/SideListItem';
+import { TabItem } from '../model/TabItem';
+import { DetailListItem } from '../model/DetailListItem';
+import { DetailItemData } from '../model/DetailItemData';
 
 /**
  * Category ability view model.

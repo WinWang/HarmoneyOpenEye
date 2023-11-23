@@ -39,6 +39,30 @@
     {
       "name": "title",
       "value": "Category"
+    },
+    {
+      "name": "loading",
+      "value": "加载中..."
+    },
+    {
+      "name": "press_retry",
+      "value": "点我重试"
+    },
+    {
+      "name": "load_error",
+      "value": "加载数据异常"
+    },
+    {
+      "name": "load_emtpy",
+      "value": "暂无数据"
+    },
+    {
+      "name": "load_success",
+      "value": "加载成功"
+    },
+    {
+      "name": "net_error",
+      "value": "网络错误"
     }
   ]
 }

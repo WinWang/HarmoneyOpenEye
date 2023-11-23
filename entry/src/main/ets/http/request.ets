@@ -1,5 +1,5 @@
 import http from '@ohos.net.http';
-import { ToastUtils } from '../utils/ToastUtils';
+import showToast from '../utils/ToastUtils';
 import HttpBuilder from './http';
 
 //接口发送超时
@@ -28,17 +28,17 @@ export function errorHandler(error: any) {
     // 清除本地token和清空vuex中token对象
     // 跳转登录页面
       case 403:
-        ToastUtils.showToast("登录过期，请重新登录")
+        showToast("登录过期，请重新登录")
 
         break;
     // 404请求不存在
       case 404:
-        ToastUtils.showToast("网络请求不存在")
+        showToast("网络请求不存在")
         break;
 
     // 其他错误，直接抛出错误提示
       default:
-        ToastUtils.showToast(error.response.data.message)
+        showToast(error.response.data.message)
     }
   }
 }

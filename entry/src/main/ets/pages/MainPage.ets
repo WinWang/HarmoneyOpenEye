@@ -1,4 +1,4 @@
-import { TabItem } from '../bean/TabItem'
+import { TabItem } from '../model/TabItem'
 import { CommonConstants } from '../constants/CommonConstants'
 import { LogUtils } from '../utils/LogUtils'
 import MainViewModel from '../viewmodel/MainViewModel'
@@ -11,6 +11,10 @@ import { MinePage } from './mine/MinePage'
 @Component
 struct MainPage {
   @State selectedIndex: number = 0
+
+  aboutToAppear() {
+
+  }
 
   build() {
     Column() {
@@ -50,11 +54,11 @@ struct MainPage {
   }
 
   onPageShow() {
-    LogUtils.logError("页面可见>>>>>>>>>>>>>>>>>>>>>>>>>>>>onPageShow")
+    LogUtils.error("页面可见>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
   }
 
   onPageHide() {
-    LogUtils.logError("页面不可见>>>>>>>>>>>>>>>>>>>>>>>>>>>>>onPageHide")
+    LogUtils.error("页面不可见>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
   }
 
   @Builder TabBottom(item: TabItem, index: number) {
@@ -80,5 +84,6 @@ struct MainPage {
     .justifyContent(FlexAlign.Center)
     .height(CommonConstants.FULL_HEIGHT_PERCENT)
     .width(CommonConstants.FULL_WIDTH_PERCENT)
+    .backgroundColor($r("app.color.color_f5f5f5"))
   }
 }

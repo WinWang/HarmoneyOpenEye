@@ -1,9 +1,12 @@
-import { TabItem } from '../bean/TabItem';
+import { TabItem } from '../model/TabItem';
 
 /**
  * MainAbility的ViewModel
  */
 export class MainViewModel {
+  /**
+   * 首页底部Tab显示数据
+   */
   tabTitle = [
     {
       index: 0,

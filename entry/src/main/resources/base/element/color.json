@@ -39,6 +39,54 @@
     {
       "name": "category_background",
       "value": "#F1F3F5"
+    },
+    {
+      "name": "color_111",
+      "value": "#111111"
+    },
+    {
+      "name": "color_222",
+      "value": "#222222"
+    },
+    {
+      "name": "color_333",
+      "value": "#333333"
+    },
+    {
+      "name": "color_444",
+      "value": "#444444"
+    },
+    {
+      "name": "color_555",
+      "value": "#555555"
+    },
+    {
+      "name": "color_666",
+      "value": "#666666"
+    },
+    {
+      "name": "color_777",
+      "value": "#777777"
+    },
+    {
+      "name": "color_888",
+      "value": "#888888"
+    },
+    {
+      "name": "color_999",
+      "value": "#999999"
+    },
+    {
+      "name": "color_fff",
+      "value": "#ffffff"
+    },
+    {
+      "name": "color_f5f5f5",
+      "value": "#f5f5f5"
+    },
+    {
+      "name": "color_red",
+      "value": "#d81e06"
     }
   ]
 }

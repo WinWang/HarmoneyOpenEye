@@ -2,6 +2,7 @@
  * 定义接口响应包装类
  */
 import http from '@ohos.net.http';
+import axios   from "@ohos/axios"
 
 
 export interface BaseResponse {
@@ -31,6 +32,7 @@ interface HttpRequestConfig extends http.HttpRequestOptions {
 
 /**
  * 网络请求构造器
+ * 基于鸿蒙默认的http框架实现
  */
 class HttpBuilder {
   httpClient: http.HttpRequest
@@ -39,6 +41,7 @@ class HttpBuilder {
   constructor(options: HttpRequestConfig) {
     this.httpClient = http.createHttp()
     this.config = options
+    axios.create()
     this.setupInterceptor()
   }
   /**

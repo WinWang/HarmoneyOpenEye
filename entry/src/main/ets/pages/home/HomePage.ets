@@ -1,38 +1,59 @@
+import { StateComponent } from '../../component/StateComponent'
+import { ViewStateConstant } from '../../constants/ViewStateConstant'
+import { HomeModelIssueListItemList } from '../../model/homeModel'
+import HomeViewModel from '../../viewmodel/HomeViewModel'
+import { HomeListItemComponent } from './component/HomeListItemComponent'
+
 /**
  * 首页
  */
-import router from '@ohos.router'
-import { getHomeList } from '../../http/apiService'
-import { LogUtils } from '../../utils/LogUtils'
-import { ToastUtils } from '../../utils/ToastUtils'
-
-
 @Component
 export struct HomePage {
-  @State count: number = 0
+  @State viewState: string = ViewStateConstant.VIEW_STATE_LOADING
+  @State isRefreshing: boolean = false
+  @State dataList: HomeModelIssueListItemList[] = []
 
   aboutToAppear() {
-    let homeData = getHomeList("").then((res) => {
-      LogUtils.logDebug(">>>>>>" + res)
-      ToastUtils.showToast(res.toString())
-    }).catch((err) => {
-      ToastUtils.showToast("错误的信息" + err.toString())
-    })
+    this.loadNet()
+  }
+
+  loadNet() {
+    HomeViewModel.getHomeList(
+      (state) => {
+        this.viewState = state
+      },
+      (result) => {
+        this.dataList = result
+      })
   }
 
   build() {
     Column() {
-      Text(this.count.toString())
-      Button("跳转到下个页面").fontSize($r("app.float.tab_text_font_size")).onClick(() => {
-        router.pushUrl({ url: "pages/CategoryPage" })
-      })
-      Button("Toast").fontSize($r("app.float.tab_text_font_size")).onClick(() => {
-        ToastUtils.showToast("哈哈哈哈")
-        this.aboutToAppear()
-      })
-      Button("Toast").fontSize($r("app.float.tab_text_font_size")).onClick(() => {
-        this.count++
-      })
+      StateComponent({
+        viewState: this.viewState,
+        retryCallback: () => {
+          this.loadNet()
+        } }) {
+        Refresh({ refreshing: $$this.isRefreshing }) {
+          List({ space: 20, initialIndex: 0 }) {
+            ForEach(this.dataList, (item: HomeModelIssueListItemList, index: number) => {
+              ListItem() {
+                HomeListItemComponent({ item: item })
+              }
+            })
+          }
+          .listDirection(Axis.Vertical) // 排列方向
+          .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 }) // 每行之间的分界线
+          .edgeEffect(EdgeEffect.Spring) // 滑动到边缘无效果
+          .onScrollIndex((firstIndex: number, lastIndex: number) => {
+            console.info('first' + firstIndex)
+            console.info('last' + lastIndex)
+          })
+          .width('100%')
+          .height("100%")
+        }
+
+      }
     }
   }
 }
