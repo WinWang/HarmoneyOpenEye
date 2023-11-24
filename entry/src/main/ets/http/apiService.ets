@@ -40,6 +40,20 @@ export function getCategories() {
   })
 }
 
+/**
+ * 获取排行榜
+ * @param rankType "weekly" "monthly" "historical"
+ * @returns
+ */
+export function getRankList(rankType: string) {
+  return axiosClient.get<homeModel>(
+    {
+      url: baseUrl + "api/v4/rankList/videos",
+      params: { "strategy": rankType }
+    }
+  )
+}
+
 
 
 

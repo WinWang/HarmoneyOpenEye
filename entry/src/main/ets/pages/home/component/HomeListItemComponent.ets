@@ -5,13 +5,20 @@ import ImageRegexUtils from '../../../utils/ImageRegexUtils'
 export struct HomeListItemComponent {
   private item: HomeModelIssueListItemList
   private swiperController: SwiperController = new SwiperController()
+  private showFooter: boolean = false
 
   build() {
-    if (this.item.type == "banner") {
-      this.bannerComponent()
-    } else {
-      this.itemComponent()
+    Column() {
+      if (this.item.type == "banner") {
+        this.bannerComponent()
+      } else {
+        this.itemComponent()
+      }
+      if (this.showFooter) {
+        this.itemFooter()
+      }
     }
+
   }
 
   @Builder
@@ -20,6 +27,7 @@ export struct HomeListItemComponent {
       Swiper(this.swiperController) {
         ForEach(this.item.bannerList, (item: HomeModelIssueListItemList) => {
           Image(ImageRegexUtils(item.data?.image))
+            .alt($r('app.media.back_placeholder'))
             .width('100%')
             .height($r('app.float.size_200'))
             .border({ radius: $r('app.float.size_5') })
@@ -34,7 +42,7 @@ export struct HomeListItemComponent {
       .duration(2000)
       .itemSpace(0)
       .curve(Curve.Linear)
-      .indicatorStyle({ color: $r('app.color.color_red') })
+      .indicatorStyle({ color: $r('app.color.color_red'), selectedColor: $r('app.color.color_red') })
       .onChange((index: number) => {
 
       })
@@ -45,7 +53,7 @@ export struct HomeListItemComponent {
   itemComponent() {
     Column() {
       Stack() {
-        Image(this.item.data?.cover.feed).width("100%").height("100%")
+        Image(this.item.data?.cover.feed).width("100%").height("100%").border({ radius: $r('app.float.size_10') })
         Text(this.item.data?.category)
           .width($r('app.float.size_45'))
           .height($r('app.float.size_20'))
@@ -60,7 +68,7 @@ export struct HomeListItemComponent {
       .height($r('app.float.size_210'))
       .border({ radius: $r('app.float.size_5') })
 
-      Flex({ direction: FlexDirection.Row }) {
+      Row() {
         Image(this.item.data.author.icon)
           .width($r('app.float.size_50'))
           .height($r('app.float.size_50'))
@@ -72,14 +80,34 @@ export struct HomeListItemComponent {
           Text(this.item.data?.author.name)
             .fontSize($r('app.float.size_text_13'))
             .fontColor($r('app.color.color_999'))
-            .margin({ top: $r('app.float.size_10') })
-        }.alignSelf(ItemAlign.Start).flexShrink(1).margin({ left: $r('app.float.size_5') })
+            .margin({ top: $r('app.float.size_5') })
+        }
+        .alignItems(HorizontalAlign.Start)
+        .flexGrow(1)
+        .margin({ left: $r('app.float.size_5') })
+        .justifyContent(FlexAlign.Center)
       }
       .width("100%")
       .height($r('app.float.size_60'))
-      .alignSelf(ItemAlign.Center)
+      .alignItems(VerticalAlign.Center)
       .padding({ left: $r('app.float.size_5'), right: $r('app.float.size_5') })
 
     }
+  }
+
+  @Builder
+  itemFooter() {
+    Row() {
+      Divider().strokeWidth(2).color($r('app.color.color_999')).width($r('app.float.size_50'))
+      Text("我是有底线的")
+        .margin({ left: 15, right: 15 })
+        .fontColor($r('app.color.color_999'))
+        .fontSize($r('app.float.size_text_15'))
+      Divider().strokeWidth(2).color($r('app.color.color_999')).width($r('app.float.size_50'))
+    }
+    .height($r('app.float.size_50'))
+    .alignItems(VerticalAlign.Center)
+    .justifyContent(FlexAlign.Center)
+    .width("100%")
   }
 }

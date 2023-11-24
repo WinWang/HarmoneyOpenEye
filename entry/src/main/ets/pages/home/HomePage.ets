@@ -17,7 +17,6 @@ export struct HomePage {
   aboutToAppear() {
     HomeViewModel.observeState(state => {
       this.viewState = state
-      this.isRefreshing = false
     })
     this.loadNet()
   }
@@ -25,6 +24,7 @@ export struct HomePage {
   loadNet() {
     HomeViewModel.getHomeList(
       (result) => {
+        this.isRefreshing = false
         if (HomeViewModel.getDate() == "") {
           this.dataList = result
         } else {
@@ -66,7 +66,7 @@ export struct HomePage {
           }.onRefreshing(() => {
             HomeViewModel.revertDate()
             this.loadNet()
-          })
+          }).padding({ left: 10, right: 10 })
         }
       }.layoutWeight(1)
     }

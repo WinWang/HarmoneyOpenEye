@@ -25,7 +25,7 @@ export struct CommonTopbar {
         .flexGrow(1)
         .textAlign(TextAlign.Center)
         .fontColor($r('app.color.color_fff'))
-        .fontSize($r('app.float.size_text_15'))
+        .fontSize($r('app.float.size_text_16'))
         .align(Alignment.Center)
     }
     .height($r('app.float.size_50'))

@@ -26,18 +26,25 @@ export struct CategoryPage {
         this.loadNet()
       } }) {
         Grid() {
-          ForEach(this.dataList, (item: CategoryModelChild) => {
+          ForEach(this.dataList, (item: CategoryModelChild, index: number) => {
             GridItem() {
               Stack() {
                 Image(ImageRegexUtils(item.bgPicture))
+                  .border({ radius: $r('app.float.size_5') })
+                  .alt($r("app.media.back_placeholder"))
                 Text(item.name)
                   .fontColor($r('app.color.color_white'))
                   .fontSize($r('app.float.size_text_20'))
                   .fontWeight(FontWeight.Bold)
-              }
+              }.border({ radius: $r('app.float.size_5') })
             }
           })
-        }.gridSpan(2)
+        }
+        .columnsTemplate('1fr 1fr')
+        .rowsGap(10)
+        .columnsGap(10)
+        .height("100%")
+        .padding({ left: 10, right: 10, top: 10, bottom: 50 })
       }
     }
   }

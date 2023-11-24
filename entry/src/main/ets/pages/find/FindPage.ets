@@ -23,38 +23,46 @@ export struct FindPage {
   build() {
     Column() {
       CommonTopbar({ title: "发现", backButton: false })
-      Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
-        TabContent() {
-          FocusPage()
-        }.tabBar(this.TabBuilder(0, FindViewModel.tabTitle[0].title))
+      Stack() {
+        Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
+          TabContent() {
+            FocusPage()
+          }.tabBar(this.TabBuilder(0, FindViewModel.tabTitle[0].title))
 
-        TabContent() {
-          CategoryPage()
-        }.tabBar(this.TabBuilder(1, FindViewModel.tabTitle[1].title))
+          TabContent() {
+            CategoryPage()
+          }.tabBar(this.TabBuilder(1, FindViewModel.tabTitle[1].title))
 
-        TabContent() {
-          TopicPage()
-        }.tabBar(this.TabBuilder(2, FindViewModel.tabTitle[2].title))
-      }.onChange((index) => {
-        this.currentIndex = index
-      }).barHeight($r("app.float.size_50"))
+          TabContent() {
+            TopicPage()
+          }.tabBar(this.TabBuilder(2, FindViewModel.tabTitle[2].title))
+        }
+        .barHeight($r("app.float.size_50"))
+        .barMode(BarMode.Fixed)
+        .onChange((index) => {
+          this.currentIndex = index
+        })
+      }
     }
+    .width("100%")
+    .height("100%")
   }
 
   @Builder TabBuilder(index: number, name: string) {
     Column() {
       Text(name)
         .fontColor(this.currentIndex === index ? $r("app.color.color_white") : $r("app.color.color_f5f5f5"))
-        .fontSize($r('app.float.size_text_16'))
+        .fontSize($r('app.float.size_text_15'))
         .fontWeight(this.currentIndex === index ? 500 : 400)
-        .lineHeight($r("app.float.size_40"))
+        .height($r("app.float.size_45"))
         .flexGrow(1)
         .textAlign(TextAlign.Center)
       Divider()
-        .strokeWidth(2)
+        .strokeWidth(5)
         .color($r("app.color.color_white"))
         .opacity(this.currentIndex === index ? 1 : 0)
         .width($r("app.float.size_80"))
+        .lineCap(LineCapStyle.Round)
     }
     .width('100%')
     .height($r("app.float.size_50"))

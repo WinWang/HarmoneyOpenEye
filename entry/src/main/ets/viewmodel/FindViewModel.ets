@@ -1,7 +1,6 @@
 import useRequestStatus from '../hooks/useRequestStatus';
 import { getHomeListAxios } from '../http/apiService';
 import { LogUtils } from '../utils/LogUtils';
-import showToast from '../utils/ToastUtils';
 import { BaseViewModel } from './BaseViewModel';
 
 export class FindViewModel extends BaseViewModel {

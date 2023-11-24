@@ -7,7 +7,7 @@ export struct SplagePage {
   aboutToAppear() {
     setTimeout(() => {
       router.replaceUrl({ url: RoutePath.MainPage })
-    }, 3000)
+    }, 500)
   }
 
   build() {

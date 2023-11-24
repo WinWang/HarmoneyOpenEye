@@ -23,8 +23,8 @@ export struct StateComponent {
   holdContent() {
     Column() {
       Image(this.convertImage())
-        .width($r('app.float.size_150'))
-        .height($r('app.float.size_150'))
+        .width($r('app.float.size_100'))
+        .height($r('app.float.size_100'))
       Text(this.convertValue())
         .fontSize($r('app.float.size_text_15'))
         .fontColor($r("app.color.color_666"))

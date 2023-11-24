@@ -1,8 +1,7 @@
-import useRequestStatus from '../hooks/useRequestStatus';
 import { getHomeList, getHomeListAxios } from '../http/apiService';
 import { HomeModelIssueListItemList } from '../model/HomeModel';
 import { LogUtils } from '../utils/LogUtils';
-import { BaseViewModel, ResultCallback, StateCallback } from './BaseViewModel';
+import { BaseViewModel, ResultCallback } from './BaseViewModel';
 
 export class HomeViewModel extends BaseViewModel {
   private date: string = ""
@@ -16,7 +15,7 @@ export class HomeViewModel extends BaseViewModel {
   }
 
   /**
-   * 获取首页列表数据
+   * 获取首页列表数据-axios客户端请求
    * @param stateCallback  状态返回
    * @param resultCallback  结果返回
    */

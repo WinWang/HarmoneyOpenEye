@@ -35,7 +35,7 @@ struct MainPage {
         TabContent() {
           HotPage()
         }
-        .tabBar(this.TabBottom(MainViewModel.tabTitle[3], 3))
+        .tabBar(this.TabBottom(MainViewModel.tabTitle[2], 2))
 
         TabContent() {
           MinePage()
@@ -48,7 +48,6 @@ struct MainPage {
       .barHeight($r('app.float.tab_bar_height'))
       .onChange((index: number) => {
         this.selectedIndex = index;
-        console.log("index>>>" + this.selectedIndex)
       })
     }
   }
