@@ -39,7 +39,6 @@ export struct StateComponent {
             this.retryCallback?.()
           })
       }
-
     }
   }
 

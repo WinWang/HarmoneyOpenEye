@@ -1,6 +1,7 @@
+import { CommonTopbar } from '../../component/CommonTopbar'
 import { StateComponent } from '../../component/StateComponent'
 import { ViewStateConstant } from '../../constants/ViewStateConstant'
-import { HomeModelIssueListItemList } from '../../model/homeModel'
+import { HomeModelIssueListItemList } from '../../model/HomeModel'
 import HomeViewModel from '../../viewmodel/HomeViewModel'
 import { HomeListItemComponent } from './component/HomeListItemComponent'
 
@@ -14,46 +15,60 @@ export struct HomePage {
   @State dataList: HomeModelIssueListItemList[] = []
 
   aboutToAppear() {
+    HomeViewModel.observeState(state => {
+      this.viewState = state
+      this.isRefreshing = false
+    })
     this.loadNet()
   }
 
   loadNet() {
     HomeViewModel.getHomeList(
-      (state) => {
-        this.viewState = state
-      },
       (result) => {
-        this.dataList = result
+        if (HomeViewModel.getDate() == "") {
+          this.dataList = result
+        } else {
+          this.dataList = [...this.dataList, ...result]
+        }
       })
   }
 
   build() {
     Column() {
-      StateComponent({
-        viewState: this.viewState,
-        retryCallback: () => {
-          this.loadNet()
-        } }) {
-        Refresh({ refreshing: $$this.isRefreshing }) {
-          List({ space: 20, initialIndex: 0 }) {
-            ForEach(this.dataList, (item: HomeModelIssueListItemList, index: number) => {
-              ListItem() {
-                HomeListItemComponent({ item: item })
-              }
-            })
-          }
-          .listDirection(Axis.Vertical) // 排列方向
-          .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 }) // 每行之间的分界线
-          .edgeEffect(EdgeEffect.Spring) // 滑动到边缘无效果
-          .onScrollIndex((firstIndex: number, lastIndex: number) => {
-            console.info('first' + firstIndex)
-            console.info('last' + lastIndex)
-          })
-          .width('100%')
-          .height("100%")
-        }
+      CommonTopbar({ title: "首页", backButton: false }).align(Alignment.TopStart)
+      Stack() {
+        StateComponent({
+          viewState: this.viewState,
+          retryCallback: () => {
+            this.loadNet()
+          } }) {
+          Refresh({ refreshing: $$this.isRefreshing }) {
+            List({ space: 10, initialIndex: 0 }) {
+              ForEach(this.dataList, (item: HomeModelIssueListItemList, index: number) => {
+                ListItem() {
+                  HomeListItemComponent({ item: item })
+                }
+              })
+            }
+            .listDirection(Axis.Vertical) // 排列方向
+            .divider({
+              strokeWidth: 1,
+              color: $r('app.color.color_f5f5f5'),
+              startMargin: 10,
+              endMargin: 10
+            }) // 每行之间的分界线
+            .onScrollIndex((firstIndex: number, lastIndex: number) => {
 
-      }
+            })
+            .onReachEnd(() => {
+              this.loadNet()
+            })
+          }.onRefreshing(() => {
+            HomeViewModel.revertDate()
+            this.loadNet()
+          })
+        }
+      }.layoutWeight(1)
     }
   }
 }

@@ -1,11 +1,21 @@
-import showToast from '../utils/ToastUtils'
+import useRequestStatus from '../hooks/useRequestStatus'
 
 export type StateCallback = (state: string) => void
 
 export type ResultCallback = (result: any) => void
 
 export class BaseViewModel {
-  handleResult() {
-    showToast("Result")
+  private stateCallback?: StateCallback
+
+  observeState(stateCallback: StateCallback) {
+    this.stateCallback = stateCallback
+  }
+
+  dispatchViewState(state: string) {
+    this.stateCallback?.(state)
+  }
+
+  httpRequest(checkResult?: boolean) {
+    return useRequestStatus(state => this.dispatchViewState(state), checkResult)
   }
 }

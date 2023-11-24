@@ -1,4 +1,4 @@
-import { HomeModelIssueListItemList } from '../../../model/homeModel'
+import { HomeModelIssueListItemList } from '../../../model/HomeModel'
 import ImageRegexUtils from '../../../utils/ImageRegexUtils'
 
 @Component
@@ -58,6 +58,7 @@ export struct HomeListItemComponent {
       }
       .width("100%")
       .height($r('app.float.size_210'))
+      .border({ radius: $r('app.float.size_5') })
 
       Flex({ direction: FlexDirection.Row }) {
         Image(this.item.data.author.icon)
@@ -65,10 +66,19 @@ export struct HomeListItemComponent {
           .height($r('app.float.size_50'))
           .border({ radius: $r('app.float.size_25') })
         Column() {
-          Text(this.item.data?.author.name).fontSize($r('app.float.size_text_15')).fontColor($r('app.color.color_333'))
-          Text(this.item.data?.author.name).fontSize($r('app.float.size_text_13')).fontColor($r('app.color.color_999'))
-        }.alignSelf(ItemAlign.Center)
-      }.width("100%").height($r('app.float.size_60')).alignSelf(ItemAlign.Center)
+          Text(this.item.data?.author.name)
+            .fontSize($r('app.float.size_text_15'))
+            .fontColor($r('app.color.color_333'))
+          Text(this.item.data?.author.name)
+            .fontSize($r('app.float.size_text_13'))
+            .fontColor($r('app.color.color_999'))
+            .margin({ top: $r('app.float.size_10') })
+        }.alignSelf(ItemAlign.Start).flexShrink(1).margin({ left: $r('app.float.size_5') })
+      }
+      .width("100%")
+      .height($r('app.float.size_60'))
+      .alignSelf(ItemAlign.Center)
+      .padding({ left: $r('app.float.size_5'), right: $r('app.float.size_5') })
 
     }
   }

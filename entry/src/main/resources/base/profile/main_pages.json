@@ -1,6 +1,6 @@
 {
   "src": [
-    "pages/MainPage",
-    "pages/CategoryPage"
+    "pages/SplashPage",
+    "pages/MainPage"
   ]
 }

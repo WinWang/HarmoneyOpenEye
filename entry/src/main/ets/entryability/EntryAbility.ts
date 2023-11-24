@@ -20,7 +20,7 @@ export default class EntryAbility extends UIAbility {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent("pages/MainPage", (err, data) => {
+    windowStage.loadContent("pages/SplashPage", (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', '加载应用首页内容失败. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;

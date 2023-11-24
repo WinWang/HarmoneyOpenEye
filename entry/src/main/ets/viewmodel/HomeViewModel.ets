@@ -1,16 +1,27 @@
 import useRequestStatus from '../hooks/useRequestStatus';
 import { getHomeList, getHomeListAxios } from '../http/apiService';
-import { HomeModelIssueListItemList } from '../model/homeModel';
+import { HomeModelIssueListItemList } from '../model/HomeModel';
 import { LogUtils } from '../utils/LogUtils';
 import { BaseViewModel, ResultCallback, StateCallback } from './BaseViewModel';
 
 export class HomeViewModel extends BaseViewModel {
   private date: string = ""
 
-  async getHomeList(stateCallback?: StateCallback, resultCallback?: ResultCallback) {
-    await useRequestStatus((state) => {
-      stateCallback?.(state)
-    }).promise(getHomeListAxios(this.date).then(result => {
+  revertDate() {
+    this.date = ""
+  }
+
+  getDate() {
+    return this.date
+  }
+
+  /**
+   * 获取首页列表数据
+   * @param stateCallback  状态返回
+   * @param resultCallback  结果返回
+   */
+  async getHomeList(resultCallback?: ResultCallback) {
+    await this.httpRequest().promise(getHomeListAxios(this.date).then(result => {
       let items = result.issueList[0].itemList
       let list = items.filter((item) => item.type == "video")
       if (this.date == "") {
@@ -22,9 +33,9 @@ export class HomeViewModel extends BaseViewModel {
           list.unshift(bannerBean)
         }
       }
-      this.spliteDate(result.nextPageUrl)
       resultCallback?.(list)
-    }))
+      this.spliteDate(result.nextPageUrl)
+    }), this.date == "" ? true : false)
   }
 
   private spliteDate(nextUrl: string) {
@@ -42,7 +53,6 @@ export class HomeViewModel extends BaseViewModel {
   getHomeListByHttp() {
     let homeData = getHomeList("").then((res) => {
       LogUtils.debug("HomeTag" + res)
-      // ToastUtils.showToast(res.toString())
     }).catch((err) => {
       LogUtils.debug("HomeTag", "错误1>>>>>>" + err)
     })
