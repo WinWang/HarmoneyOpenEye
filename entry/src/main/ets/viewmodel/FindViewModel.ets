@@ -1,4 +1,4 @@
-import useRequestStatus from '../hooks/useRequestStatus';
+import useRequestStatus from '../http/useRequestStatus';
 import { getHomeListAxios } from '../http/apiService';
 import { LogUtils } from '../utils/LogUtils';
 import { BaseViewModel } from './BaseViewModel';

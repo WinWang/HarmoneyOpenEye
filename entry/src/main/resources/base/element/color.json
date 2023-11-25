@@ -93,6 +93,10 @@
       "value": "#f5f5f5"
     },
     {
+      "name": "color_f8f8f8",
+      "value": "#FFF8F8F8"
+    },
+    {
       "name": "color_red",
       "value": "#d81e06"
     }

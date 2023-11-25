@@ -4,33 +4,44 @@
 import router from '@ohos.router'
 
 @Component
-export struct CommonTopbar {
+export struct CommonTopBar {
   private backButton: boolean = true
   private onBackClick?: () => void
   private title: string = ""
 
   build() {
-    Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
-      if (this.backButton) {
-        Image($r('app.media.ic_action_back'))
-          .height($r('app.float.size_20'))
-          .width($r('app.float.size_20'))
+    Stack({ alignContent: Alignment.Start }) {
+      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
+        Text(this.title)
+          .flexGrow(1)
+          .textAlign(TextAlign.Center)
+          .fontColor($r('app.color.color_fff'))
+          .fontSize($r('app.float.size_text_16'))
           .align(Alignment.Center)
-          .onClick(() => {
-            this.onBackClick?.()
-            router.back();
-          })
+          .maxLines(1)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
       }
-      Text(this.title)
-        .flexGrow(1)
-        .textAlign(TextAlign.Center)
-        .fontColor($r('app.color.color_fff'))
-        .fontSize($r('app.float.size_text_16'))
-        .align(Alignment.Center)
+      .height($r('app.float.size_50'))
+      .margin({ left: $r('app.float.size_50'), right: $r('app.float.size_50') })
+      .alignSelf(ItemAlign.Center)
+
+      if (this.backButton) {
+        Stack() {
+          Image($r('app.media.ic_action_back'))
+            .height($r('app.float.size_16'))
+            .width($r('app.float.size_16'))
+            .align(Alignment.Center)
+            .onClick(() => {
+              this.onBackClick?.()
+              router.back();
+            })
+        }
+        .height($r('app.float.size_50'))
+        .width($r('app.float.size_50'))
+      }
     }
+    .backgroundColor($r("app.color.color_red"))
     .height($r('app.float.size_50'))
     .width("100%")
-    .backgroundColor($r("app.color.color_red"))
-    .alignSelf(ItemAlign.Center)
   }
 }

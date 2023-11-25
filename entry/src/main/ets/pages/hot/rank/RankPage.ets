@@ -32,9 +32,12 @@ export struct RankPage {
         List({ space: 10, initialIndex: 0 }) {
           ForEach(this.rankList, (item: HomeModelIssueListItemList, index: number) => {
             ListItem() {
-              HomeListItemComponent({ item: item, showFooter: index == this.rankList.length - 1 })
+              HomeListItemComponent({ item: item })
             }
           })
+          ListItem() {
+            this.itemFooter()
+          }
         }
         .listDirection(Axis.Vertical) // 排列方向
         .margin({ left: 10, top: 10, right: 10, bottom: 50 })
@@ -46,5 +49,21 @@ export struct RankPage {
         })
       }
     }
+  }
+
+  @Builder
+  itemFooter() {
+    Row() {
+      Divider().strokeWidth(2).color($r('app.color.color_999')).width($r('app.float.size_50'))
+      Text("我是有底线的")
+        .margin({ left: 15, right: 15 })
+        .fontColor($r('app.color.color_999'))
+        .fontSize($r('app.float.size_text_15'))
+      Divider().strokeWidth(2).color($r('app.color.color_999')).width($r('app.float.size_50'))
+    }
+    .height($r('app.float.size_50'))
+    .alignItems(VerticalAlign.Center)
+    .justifyContent(FlexAlign.Center)
+    .width("100%")
   }
 }

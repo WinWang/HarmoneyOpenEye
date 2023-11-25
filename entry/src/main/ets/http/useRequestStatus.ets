@@ -1,5 +1,5 @@
 import { ViewStateConstant } from '../constants/ViewStateConstant';
-import { ApiResponse } from '../http/http';
+import { ApiResponse } from './http';
 import axios from "@ohos/axios"
 
 

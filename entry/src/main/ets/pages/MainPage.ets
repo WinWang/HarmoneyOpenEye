@@ -7,6 +7,10 @@ import { HomePage } from './home/HomePage'
 import { HotPage } from './hot/HotPage'
 import { MinePage } from './mine/MinePage'
 
+@Extend(Image) function placeHolder(holderImage?: Resource) {
+  .alt(holderImage?? $r('app.media.back_placeholder'))
+}
+
 @Entry
 @Component
 struct MainPage {

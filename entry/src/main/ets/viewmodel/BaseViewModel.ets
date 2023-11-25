@@ -1,4 +1,4 @@
-import useRequestStatus from '../hooks/useRequestStatus'
+import useRequestStatus from '../http/useRequestStatus'
 
 export type StateCallback = (state: string) => void
 

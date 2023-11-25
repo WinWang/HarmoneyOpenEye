@@ -1,4 +1,4 @@
-import { CommonTopbar } from '../../component/CommonTopbar'
+import { CommonTopBar } from '../../component/CommonTopbar'
 import FindViewModel from '../../viewmodel/FindViewModel'
 import { CategoryPage } from './category/CategoryPage'
 import { FocusPage } from './focus/FocusPage'
@@ -22,7 +22,7 @@ export struct FindPage {
 
   build() {
     Column() {
-      CommonTopbar({ title: "发现", backButton: false })
+      CommonTopBar({ title: "发现", backButton: false })
       Stack() {
         Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
           TabContent() {
@@ -64,7 +64,7 @@ export struct FindPage {
         .width($r("app.float.size_80"))
         .lineCap(LineCapStyle.Round)
     }
-    .width('100%')
+    .width('101%') //解决Tab连接处白色线条间隙
     .height($r("app.float.size_50"))
     .backgroundColor($r("app.color.color_red"))
     .justifyContent(FlexAlign.Center)

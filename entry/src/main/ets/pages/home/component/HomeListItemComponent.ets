@@ -5,20 +5,13 @@ import ImageRegexUtils from '../../../utils/ImageRegexUtils'
 export struct HomeListItemComponent {
   private item: HomeModelIssueListItemList
   private swiperController: SwiperController = new SwiperController()
-  private showFooter: boolean = false
 
   build() {
-    Column() {
-      if (this.item.type == "banner") {
-        this.bannerComponent()
-      } else {
-        this.itemComponent()
-      }
-      if (this.showFooter) {
-        this.itemFooter()
-      }
+    if (this.item.type == "banner") {
+      this.bannerComponent()
+    } else {
+      this.itemComponent()
     }
-
   }
 
   @Builder
@@ -53,14 +46,18 @@ export struct HomeListItemComponent {
   itemComponent() {
     Column() {
       Stack() {
-        Image(this.item.data?.cover.feed).width("100%").height("100%").border({ radius: $r('app.float.size_10') })
+        Image(this.item.data?.cover.feed)
+          .width("100%")
+          .height("100%")
+          .border({ radius: $r('app.float.size_10') })
+          .alt($r('app.media.back_placeholder'))
         Text(this.item.data?.category)
           .width($r('app.float.size_45'))
           .height($r('app.float.size_20'))
           .fontColor($r('app.color.color_fff'))
           .fontSize($r('app.float.size_text_12'))
           .backgroundColor($r('app.color.color_red'))
-          .border({ radius: { bottomRight: $r('app.float.size_10') } })
+          .border({ radius: { topLeft: $r('app.float.size_10'), bottomRight: $r('app.float.size_10') } })
           .textAlign(TextAlign.Center)
           .position({ x: 0, y: 0 })
       }
@@ -93,21 +90,5 @@ export struct HomeListItemComponent {
       .padding({ left: $r('app.float.size_5'), right: $r('app.float.size_5') })
 
     }
-  }
-
-  @Builder
-  itemFooter() {
-    Row() {
-      Divider().strokeWidth(2).color($r('app.color.color_999')).width($r('app.float.size_50'))
-      Text("我是有底线的")
-        .margin({ left: 15, right: 15 })
-        .fontColor($r('app.color.color_999'))
-        .fontSize($r('app.float.size_text_15'))
-      Divider().strokeWidth(2).color($r('app.color.color_999')).width($r('app.float.size_50'))
-    }
-    .height($r('app.float.size_50'))
-    .alignItems(VerticalAlign.Center)
-    .justifyContent(FlexAlign.Center)
-    .width("100%")
   }
 }

@@ -1,6 +1,7 @@
-import { AxiosRequestHeaders } from '@ohos/axios'
 import { CategoryModel } from '../model/CategoryModel'
+import { FocusModel } from '../model/FocusModel'
 import { homeModel } from '../model/HomeModel'
+import { TopicModel } from '../model/TopicModel'
 import axiosClient from './AxiosRequest'
 import httpClient from './request'
 
@@ -31,6 +32,18 @@ export function getHomeListAxios(date: string = "") {
 }
 
 /**
+ * 获取关注接口
+ */
+export function getFocusData(pageIndex: number = 0) {
+  return axiosClient.get<FocusModel>(
+    {
+      url: baseUrl + "api/v4/tabs/follow",
+      params: { "start": pageIndex }
+    }
+  )
+}
+
+/**
  * 获取分类数据
  * @returns
  */
@@ -39,6 +52,19 @@ export function getCategories() {
     url: baseUrl + "api/v4/categories",
   })
 }
+
+/**
+ * 获取专题接口
+ */
+export function getTopicData(start: number = 0) {
+  return axiosClient.get<TopicModel>(
+    {
+      url: baseUrl + "api/v3/specialTopics",
+      params: { "start": start }
+    }
+  )
+}
+
 
 /**
  * 获取排行榜

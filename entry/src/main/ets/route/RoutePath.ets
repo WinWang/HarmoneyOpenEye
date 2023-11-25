@@ -1,8 +1,11 @@
 /**
- * 路由管理
+ * 路由表管理
  */
 export class RoutePath {
-  static SplashPage = "pages/SplashPage"
-  static MainPage = "pages/MainPage"
-  static CategoryPage = "pages/CategoryPage"
+  static readonly SplashPage = "pages/SplashPage"
+  static readonly MainPage = "pages/MainPage"
+  static readonly CategoryPage = "pages/CategoryPage"
+  static readonly ContainerPage = "pages/container/ContainerPage"
+  static readonly TopicDetailPage = "pages/topicDetail/TopicDetailPage"
+  static readonly DetailPage = "pages/commonDetail/DetailPage"
 }

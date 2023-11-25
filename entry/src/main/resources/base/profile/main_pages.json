@@ -1,6 +1,9 @@
 {
   "src": [
     "pages/SplashPage",
-    "pages/MainPage"
+    "pages/MainPage",
+    "pages/container/ContainerPage",
+    "pages/commonDetail/DetailPage",
+    "pages/topicDetail/TopicDetailPage"
   ]
 }

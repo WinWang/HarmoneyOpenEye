@@ -1,4 +1,5 @@
-import { CommonTopbar } from '../../component/CommonTopbar'
+import { CommonTopBar } from '../../component/CommonTopbar'
+import { RefreshFooter } from '../../component/RefreshFooter'
 import { StateComponent } from '../../component/StateComponent'
 import { ViewStateConstant } from '../../constants/ViewStateConstant'
 import { HomeModelIssueListItemList } from '../../model/HomeModel'
@@ -13,6 +14,7 @@ export struct HomePage {
   @State viewState: string = ViewStateConstant.VIEW_STATE_LOADING
   @State isRefreshing: boolean = false
   @State dataList: HomeModelIssueListItemList[] = []
+  @State showLoading: boolean = false
 
   aboutToAppear() {
     HomeViewModel.observeState(state => {
@@ -25,6 +27,7 @@ export struct HomePage {
     HomeViewModel.getHomeList(
       (result) => {
         this.isRefreshing = false
+        this.showLoading = false
         if (HomeViewModel.getDate() == "") {
           this.dataList = result
         } else {
@@ -35,20 +38,23 @@ export struct HomePage {
 
   build() {
     Column() {
-      CommonTopbar({ title: "首页", backButton: false }).align(Alignment.TopStart)
+      CommonTopBar({ title: "首页", backButton: false }).align(Alignment.TopStart)
       Stack() {
         StateComponent({
           viewState: this.viewState,
           retryCallback: () => {
             this.loadNet()
           } }) {
-          Refresh({ refreshing: $$this.isRefreshing }) {
+          Refresh({ refreshing: $$this.isRefreshing, offset: 100, friction: 100 }) {
             List({ space: 10, initialIndex: 0 }) {
               ForEach(this.dataList, (item: HomeModelIssueListItemList, index: number) => {
                 ListItem() {
                   HomeListItemComponent({ item: item })
                 }
               })
+              ListItem() {
+                RefreshFooter({ showFooter: this.showLoading })
+              }
             }
             .listDirection(Axis.Vertical) // 排列方向
             .divider({
@@ -61,9 +67,11 @@ export struct HomePage {
 
             })
             .onReachEnd(() => {
+              this.showLoading = true
               this.loadNet()
             })
-          }.onRefreshing(() => {
+          }
+          .onRefreshing(() => {
             HomeViewModel.revertDate()
             this.loadNet()
           }).padding({ left: 10, right: 10 })

@@ -1,7 +1,7 @@
 /**
  * 热门页面
  */
-import { CommonTopbar } from '../../component/CommonTopbar'
+import { CommonTopBar } from '../../component/CommonTopbar'
 import { LogUtils } from '../../utils/LogUtils'
 import HotViewModel from '../../viewmodel/HotViewModel'
 import { RankPage } from './rank/RankPage'
@@ -14,7 +14,7 @@ export struct HotPage {
   build() {
     Stack() {
       Column() {
-        CommonTopbar({ title: "热门", backButton: false })
+        CommonTopBar({ title: "热门", backButton: false })
         Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
           ForEach(HotViewModel.hotTabTitle, (tabItem, index) => {
             TabContent() {
@@ -55,7 +55,7 @@ export struct HotPage {
         .width($r("app.float.size_80"))
         .lineCap(LineCapStyle.Round)
     }
-    .width('100%')
+    .width('101%') //解决Tab连接处白色线条间隙
     .height($r("app.float.size_50"))
     .backgroundColor($r("app.color.color_red"))
     .justifyContent(FlexAlign.End)
