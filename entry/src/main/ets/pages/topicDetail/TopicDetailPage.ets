@@ -3,6 +3,7 @@ import { CommonTopBar } from '../../component/CommonTopbar'
 import { StateComponent } from '../../component/StateComponent'
 import { ViewStateConstant } from '../../constants/ViewStateConstant'
 import { TopicDetailModel, TopicDetailModelItemList } from '../../model/TopicDetailModel'
+import { LogUtils } from '../../utils/LogUtils'
 import TopicDetailViewModel from '../../viewmodel/TopicDetailViewModel'
 
 
@@ -109,28 +110,28 @@ struct TopicDetailPage {
           .autoPlay(this.isAutoPlay)
           .controls(this.showControls)
           .onStart(() => {
-            console.info('onStart')
+            LogUtils.info('onStart')
           })
           .onPause(() => {
-            console.info('onPause')
+            LogUtils.info('onPause')
           })
           .onFinish(() => {
-            console.info('onFinish')
+            LogUtils.info('onFinish')
           })
           .onError(() => {
-            console.info('onError')
+            LogUtils.info('onError')
           })
           .onPrepared((e) => {
-            console.info('onPrepared is ' + e.duration)
+            LogUtils.info('onPrepared is ' + e.duration)
           })
           .onSeeking((e) => {
-            console.info('onSeeking is ' + e.time)
+            LogUtils.info('onSeeking is ' + e.time)
           })
           .onSeeked((e) => {
-            console.info('onSeeked is ' + e.time)
+            LogUtils.info('onSeeked is ' + e.time)
           })
           .onUpdate((e) => {
-            console.info('onUpdate is ' + e.time)
+            LogUtils.info('onUpdate is ' + e.time)
           })
       } else {
         Stack() {

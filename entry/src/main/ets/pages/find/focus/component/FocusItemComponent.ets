@@ -1,4 +1,6 @@
 import { FocusModelItemList, FocusModelItemListDataItemList } from '../../../../model/FocusModel'
+import { RoutePath } from '../../../../route/RoutePath'
+import { Router } from '../../../../route/Router'
 
 @Component
 export struct FocusItemComponent {
@@ -50,14 +52,16 @@ export struct FocusItemComponent {
                   .fontColor($r('app.color.color_fff'))
                   .fontSize($r('app.float.size_text_12'))
                   .backgroundColor($r('app.color.color_red'))
-                  .border({ radius: {topLeft:$r('app.float.size_10'), bottomRight: $r('app.float.size_10') } })
+                  .border({ radius: { topLeft: $r('app.float.size_10'), bottomRight: $r('app.float.size_10') } })
                   .textAlign(TextAlign.Center)
                   .position({ x: 0, y: 0 })
               }
             }
             .height($r('app.float.size_130'))
             .width($r('app.float.size_220'))
-          }
+          }.onClick(() => {
+            Router.push(RoutePath.DetailPage, { "id": innerItem.data.id, playUrl: innerItem.data.playUrl })
+          })
         })
       }
       .listDirection(Axis.Horizontal)

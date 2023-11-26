@@ -1,4 +1,4 @@
-export interface homeModel {
+export interface HomeModel {
   issueList: HomeModelIssueList[];
   itemList: HomeModelIssueList[];
   nextPageUrl: string;

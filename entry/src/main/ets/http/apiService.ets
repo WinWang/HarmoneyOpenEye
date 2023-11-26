@@ -1,7 +1,7 @@
 import { CommonConstants } from '../constants/CommonConstants'
 import { CategoryModel } from '../model/CategoryModel'
 import { FocusModel } from '../model/FocusModel'
-import { homeModel } from '../model/HomeModel'
+import { HomeModel } from '../model/HomeModel'
 import { TopicDetailModel } from '../model/TopicDetailModel'
 import { TopicModel } from '../model/TopicModel'
 import axiosClient from './AxiosRequest'
@@ -15,7 +15,7 @@ let baseUrl = "https://baobab.kaiyanapp.com/"
  * @returns
  */
 export function getHomeList(date: string = "") {
-  return httpClient.get<homeModel>({
+  return httpClient.get<HomeModel>({
     url: baseUrl + "api/v2/feed",
     extraData: { "date": date }
   })
@@ -26,7 +26,7 @@ export function getHomeList(date: string = "") {
  * @returns
  */
 export function getHomeListAxios(date: string = "") {
-  return axiosClient.get<homeModel>({
+  return axiosClient.get<HomeModel>({
     url: baseUrl + "api/v2/feed",
     params: { "date": date }
     // headers: { "Accept": "application/json" } as AxiosRequestHeaders
@@ -74,7 +74,7 @@ export function getTopicData(start: number = 0) {
  * @returns
  */
 export function getRankList(rankType: string) {
-  return axiosClient.get<homeModel>(
+  return axiosClient.get<HomeModel>(
     {
       url: baseUrl + "api/v4/rankList/videos",
       params: { "strategy": rankType }
@@ -99,7 +99,7 @@ export function getTopicDetailList(id: number) {
  * @param id
  */
 export function getRelationList(id: number) {
-  return axiosClient.get<homeModel>(
+  return axiosClient.get<HomeModel>(
     {
       url: baseUrl + "api/v4/video/related",
       params: { "id": id }
@@ -113,7 +113,7 @@ export function getRelationList(id: number) {
  * @param start
  */
 export function getCategoryDetailList(id: number, start: number) {
-  return axiosClient.get<homeModel>(
+  return axiosClient.get<HomeModel>(
     {
       url: baseUrl + "api/v4/categories/videoList",
       params: {

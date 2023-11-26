@@ -1,6 +1,8 @@
 import { StateComponent } from '../../../component/StateComponent'
 import { ViewStateConstant } from '../../../constants/ViewStateConstant'
 import { HomeModelIssueListItemList } from '../../../model/HomeModel'
+import { RoutePath } from '../../../route/RoutePath'
+import { Router } from '../../../route/Router'
 import { RankViewModel } from '../../../viewmodel/RankViewModel'
 import { HomeListItemComponent } from '../../home/component/HomeListItemComponent'
 
@@ -33,7 +35,9 @@ export struct RankPage {
           ForEach(this.rankList, (item: HomeModelIssueListItemList, index: number) => {
             ListItem() {
               HomeListItemComponent({ item: item })
-            }
+            }.onClick(() => {
+              Router.push(RoutePath.DetailPage, { "id": item.data.id, playUrl: item.data.playUrl })
+            })
           })
           ListItem() {
             this.itemFooter()

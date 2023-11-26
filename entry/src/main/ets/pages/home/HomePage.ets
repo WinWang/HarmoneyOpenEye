@@ -3,6 +3,8 @@ import { RefreshFooter } from '../../component/RefreshFooter'
 import { StateComponent } from '../../component/StateComponent'
 import { ViewStateConstant } from '../../constants/ViewStateConstant'
 import { HomeModelIssueListItemList } from '../../model/HomeModel'
+import { RoutePath } from '../../route/RoutePath'
+import { Router } from '../../route/Router'
 import HomeViewModel from '../../viewmodel/HomeViewModel'
 import { HomeListItemComponent } from './component/HomeListItemComponent'
 
@@ -49,7 +51,9 @@ export struct HomePage {
             List({ space: 10, initialIndex: 0 }) {
               ForEach(this.dataList, (item: HomeModelIssueListItemList, index: number) => {
                 ListItem() {
-                  HomeListItemComponent({ item: item })
+                  HomeListItemComponent({ item: item }).onClick(() => {
+                    Router.push(RoutePath.DetailPage, { "id": item.data.id, playUrl: item.data.playUrl })
+                  })
                 }
               })
               ListItem() {
