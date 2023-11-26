@@ -1,7 +1,7 @@
 export interface TopicDetailModel {
     id?: number;
-    headerImage: string;
-    brief: string;
+    headerImage?: string;
+    brief?: string;
     text?: string;
     shareLink?: string;
     itemList?: TopicDetailModelItemList[];

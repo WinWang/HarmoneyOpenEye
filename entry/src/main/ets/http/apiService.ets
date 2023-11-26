@@ -1,6 +1,8 @@
+import { CommonConstants } from '../constants/CommonConstants'
 import { CategoryModel } from '../model/CategoryModel'
 import { FocusModel } from '../model/FocusModel'
 import { homeModel } from '../model/HomeModel'
+import { TopicDetailModel } from '../model/TopicDetailModel'
 import { TopicModel } from '../model/TopicModel'
 import axiosClient from './AxiosRequest'
 import httpClient from './request'
@@ -79,6 +81,51 @@ export function getRankList(rankType: string) {
     }
   )
 }
+
+/**
+ *获取主题详情接口
+ * @param id
+ */
+export function getTopicDetailList(id: number) {
+  return axiosClient.get<TopicDetailModel>(
+    {
+      url: baseUrl + "api/v3/lightTopics/internal/" + id
+    }
+  )
+}
+
+/**
+ * 获取视频详情接口
+ * @param id
+ */
+export function getRelationList(id: number) {
+  return axiosClient.get<homeModel>(
+    {
+      url: baseUrl + "api/v4/video/related",
+      params: { "id": id }
+    }
+  )
+}
+
+/**
+ * 获取分类详情接口
+ * @param id
+ * @param start
+ */
+export function getCategoryDetailList(id: number, start: number) {
+  return axiosClient.get<homeModel>(
+    {
+      url: baseUrl + "api/v4/categories/videoList",
+      params: {
+        "id": id,
+        "start": start,
+        "udid": CommonConstants.UUID,
+        deviceModel: CommonConstants.DEVICE_NUM
+      }
+    }
+  )
+}
+
 
 
 

@@ -5,9 +5,9 @@ import router from '@ohos.router'
 
 @Component
 export struct CommonTopBar {
+  @Prop title: string
   private backButton: boolean = true
   private onBackClick?: () => void
-  private title: string = ""
 
   build() {
     Stack({ alignContent: Alignment.Start }) {

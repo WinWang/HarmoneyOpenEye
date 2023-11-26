@@ -78,7 +78,7 @@ struct MainPage {
         .height($r('app.float.tab_text_height'))
         .fontSize($r('app.float.tab_text_font_size'))
         .fontWeight(CommonConstants.TAB_ITEM_FONT_WEIGHT)
-        .fontColor(this.selectedIndex === index ? Color.Red : Color.Gray)
+        .fontColor(this.selectedIndex === index ? $r('app.color.color_red') : Color.Gray)
         .textAlign(TextAlign.Center)
         .margin({
           bottom: $r('app.float.tab_text_margin_bottom')

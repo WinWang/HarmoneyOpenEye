@@ -49,7 +49,7 @@ export struct TopicPage {
                   .height($r('app.float.size_200'))
                   .border({ radius: $r('app.float.size_5') })
               }.onClick(() => {
-                Router.push(RoutePath.TopicDetailPage)
+                Router.push(RoutePath.TopicDetailPage, { "id": item.data.id })
               })
             })
             ListItem() {

@@ -253,6 +253,10 @@
       "value": "23vp"
     },
     {
+      "name": "size_minus_23",
+      "value": "-23vp"
+    },
+    {
       "name": "size_24",
       "value": "24vp"
     },
