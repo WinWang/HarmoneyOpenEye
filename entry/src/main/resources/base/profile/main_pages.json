@@ -4,6 +4,7 @@
     "pages/MainPage",
     "pages/container/ContainerPage",
     "pages/commonDetail/DetailPage",
-    "pages/topicDetail/TopicDetailPage"
+    "pages/topicDetail/TopicDetailPage",
+    "pages/categoryDetail/CategoryDetailPage"
   ]
 }

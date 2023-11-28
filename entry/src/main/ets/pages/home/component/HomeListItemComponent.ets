@@ -46,7 +46,7 @@ export struct HomeListItemComponent {
   itemComponent() {
     Column() {
       Stack() {
-        Image(this.item.data?.cover.feed)
+        Image(this.item?.data?.cover?.feed)
           .width("100%")
           .height("100%")
           .border({ radius: $r('app.float.size_10') })
@@ -66,15 +66,15 @@ export struct HomeListItemComponent {
       .border({ radius: $r('app.float.size_5') })
 
       Row() {
-        Image(this.item.data.author.icon)
+        Image(this.item?.data?.author?.icon)
           .width($r('app.float.size_50'))
           .height($r('app.float.size_50'))
           .border({ radius: $r('app.float.size_25') })
         Column() {
-          Text(this.item.data?.author.name)
+          Text(this.item.data?.author?.name)
             .fontSize($r('app.float.size_text_15'))
             .fontColor($r('app.color.color_333'))
-          Text(this.item.data?.author.name)
+          Text(this.item.data?.author?.name)
             .fontSize($r('app.float.size_text_13'))
             .fontColor($r('app.color.color_999'))
             .margin({ top: $r('app.float.size_5') })

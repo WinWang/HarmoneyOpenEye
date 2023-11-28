@@ -1,4 +1,4 @@
-import { CommonTopBar } from '../../component/CommonTopbar'
+import { CommonTopBar } from '../../component/CommonTopBar'
 import FindViewModel from '../../viewmodel/FindViewModel'
 import { CategoryPage } from './category/CategoryPage'
 import { FocusPage } from './focus/FocusPage'

@@ -1,6 +1,8 @@
 import { StateComponent } from '../../../component/StateComponent'
 import { ViewStateConstant } from '../../../constants/ViewStateConstant'
 import { CategoryModel, CategoryModelChild } from '../../../model/CategoryModel'
+import { RoutePath } from '../../../route/RoutePath'
+import { Router } from '../../../route/Router'
 import ImageRegexUtils from '../../../utils/ImageRegexUtils'
 import CategoryViewModel from '../../../viewmodel/CategoryViewModel'
 
@@ -37,7 +39,13 @@ export struct CategoryPage {
                   .fontSize($r('app.float.size_text_20'))
                   .fontWeight(FontWeight.Bold)
               }.border({ radius: $r('app.float.size_5') })
-            }
+            }.onClick(() => {
+              Router.push(RoutePath.CategoryDetailPage, {
+                "headerImage": item.headerImage,
+                "title": item.name,
+                "id": item.id
+              })
+            })
           })
         }
         .columnsTemplate('1fr 1fr')

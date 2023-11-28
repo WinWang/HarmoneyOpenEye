@@ -1,5 +1,5 @@
 import router from '@ohos.router'
-import { CommonTopBar } from '../../component/CommonTopbar'
+import { CommonTopBar } from '../../component/CommonTopBar'
 import { StateComponent } from '../../component/StateComponent'
 import { ViewStateConstant } from '../../constants/ViewStateConstant'
 import { TopicDetailModel, TopicDetailModelItemList } from '../../model/TopicDetailModel'

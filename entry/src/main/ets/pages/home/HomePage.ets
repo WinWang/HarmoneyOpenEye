@@ -1,4 +1,4 @@
-import { CommonTopBar } from '../../component/CommonTopbar'
+import { CommonTopBar } from '../../component/CommonTopBar'
 import { RefreshFooter } from '../../component/RefreshFooter'
 import { StateComponent } from '../../component/StateComponent'
 import { ViewStateConstant } from '../../constants/ViewStateConstant'
