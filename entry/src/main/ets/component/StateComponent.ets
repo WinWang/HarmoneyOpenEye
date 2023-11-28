@@ -1,10 +1,15 @@
 import { ViewStateConstant } from '../constants/ViewStateConstant';
+import { CommonSkeleton } from '../skelton/CommonSkeleton';
 
 @Component
 export struct StateComponent {
   @Prop viewState: string;
+  //页面内容区域组件
   @BuilderParam viewContent: () => void
-  retryCallback?: () => void;
+  //重试的回调方法
+  retryCallback?: () => void
+  //是否骨架屏幕
+  private showSkeleton: boolean = false
 
   build() {
     Stack() {
@@ -21,25 +26,30 @@ export struct StateComponent {
    */
   @Builder
   holdContent() {
-    Column() {
-      Image(this.convertImage())
-        .width($r('app.float.size_100'))
-        .height($r('app.float.size_100'))
-      Text(this.convertValue())
-        .fontSize($r('app.float.size_text_15'))
-        .fontColor($r("app.color.color_666"))
-        .margin($r('app.float.size_10'))
-      if (this.viewState != ViewStateConstant.VIEW_STATE_LOADING) {
-        Button($r('app.string.press_retry'))
-          .width($r('app.float.size_120'))
-          .height($r('app.float.size_35'))
-          .backgroundColor($r('app.color.color_red'))
-          .fontColor($r('app.color.color_fff'))
-          .onClick(() => {
-            this.retryCallback?.()
-          })
+    if (this.showSkeleton && this.viewState == ViewStateConstant.VIEW_STATE_LOADING) {
+      CommonSkeleton()
+    } else {
+      Column() {
+        Image(this.convertImage())
+          .width($r('app.float.size_100'))
+          .height($r('app.float.size_100'))
+        Text(this.convertValue())
+          .fontSize($r('app.float.size_text_15'))
+          .fontColor($r("app.color.color_666"))
+          .margin($r('app.float.size_10'))
+        if (this.viewState != ViewStateConstant.VIEW_STATE_LOADING) {
+          Button($r('app.string.press_retry'))
+            .width($r('app.float.size_120'))
+            .height($r('app.float.size_35'))
+            .backgroundColor($r('app.color.color_red'))
+            .fontColor($r('app.color.color_fff'))
+            .onClick(() => {
+              this.retryCallback?.()
+            })
+        }
       }
     }
+
   }
 
   /**

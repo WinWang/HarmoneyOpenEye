@@ -8,7 +8,7 @@ import { LogUtils } from '../utils/LogUtils';
 @Component
 export struct CommonTopBar {
   @Prop title: string
-  @Prop alpha: number = 1
+  @Prop alpha: number
   @State statusBarHeight: number = 0
   private titleAlignment: TextAlign = TextAlign.Center
   private backButton: boolean = true

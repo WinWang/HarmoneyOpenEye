@@ -4,6 +4,8 @@ import { RefreshFooter } from '../../component/RefreshFooter'
 import { StateComponent } from '../../component/StateComponent'
 import { ViewStateConstant } from '../../constants/ViewStateConstant'
 import { HomeModelIssueListItemList } from '../../model/HomeModel'
+import { RoutePath } from '../../route/RoutePath'
+import { Router } from '../../route/Router'
 import ImageRegexUtils from '../../utils/ImageRegexUtils'
 import { LogUtils } from '../../utils/LogUtils'
 import categoryDetailViewModel from '../../viewmodel/CategoryDetialViewModel'
@@ -56,7 +58,12 @@ struct CategoryDetailPage {
               ForEach(this.dataList, (item: HomeModelIssueListItemList) => {
                 ListItem() {
                   HomeListItemComponent({ item: item })
-                }.padding({ left: $r('app.float.size_10'), right: $r('app.float.size_10') })
+                }
+                .padding({ left: $r('app.float.size_10'), right: $r('app.float.size_10') })
+                .onClick(() => {
+                  Router.push(RoutePath.DetailPage, { "id": item.data.id, playUrl: item.data.playUrl })
+                })
+
               })
 
               ListItem() {

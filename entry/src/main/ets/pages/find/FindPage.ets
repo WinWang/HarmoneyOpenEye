@@ -22,7 +22,7 @@ export struct FindPage {
 
   build() {
     Column() {
-      CommonTopBar({ title: "发现", backButton: false })
+      CommonTopBar({ title: "发现", backButton: false, alpha: 1 })
       Stack() {
         Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
           TabContent() {

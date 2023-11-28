@@ -33,7 +33,7 @@ struct TopicDetailPage {
 
   build() {
     Column() {
-      CommonTopBar({ title: this.title })
+      CommonTopBar({ title: this.title,alpha: 1 })
       Stack() {
         StateComponent({ viewState: this.viewState, retryCallback: () => {
           this.loadNet()

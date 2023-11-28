@@ -5,6 +5,7 @@ import { ViewStateConstant } from '../../constants/ViewStateConstant'
 import { HomeModelIssueListItemList } from '../../model/HomeModel'
 import { RoutePath } from '../../route/RoutePath'
 import { Router } from '../../route/Router'
+import { CommonSkeleton } from '../../skelton/CommonSkeleton'
 import HomeViewModel from '../../viewmodel/HomeViewModel'
 import { HomeListItemComponent } from './component/HomeListItemComponent'
 
@@ -40,19 +41,21 @@ export struct HomePage {
 
   build() {
     Column() {
-      CommonTopBar({ title: "首页", backButton: false }).align(Alignment.TopStart)
+      CommonTopBar({ title: "首页", backButton: false, alpha: 1 }).align(Alignment.TopStart)
       Stack() {
         StateComponent({
           viewState: this.viewState,
+          showSkeleton: true,
           retryCallback: () => {
             this.loadNet()
-          } }) {
+          }
+        }) {
           Refresh({ refreshing: $$this.isRefreshing, offset: 100, friction: 100 }) {
             List({ space: 10, initialIndex: 0 }) {
               ForEach(this.dataList, (item: HomeModelIssueListItemList, index: number) => {
                 ListItem() {
                   HomeListItemComponent({ item: item }).onClick(() => {
-                    Router.push(RoutePath.DetailPage, { "id": item.data.id, playUrl: item.data.playUrl })
+                    Router.push(RoutePath.DetailPage, { "id": item?.data?.id, playUrl: item?.data?.playUrl })
                   })
                 }
               })
@@ -82,5 +85,10 @@ export struct HomePage {
         }
       }.layoutWeight(1)
     }
+  }
+
+  @Builder
+  skeletonContent() {
+    CommonSkeleton()
   }
 }

@@ -14,7 +14,7 @@ export struct HotPage {
   build() {
     Stack() {
       Column() {
-        CommonTopBar({ title: "热门", backButton: false })
+        CommonTopBar({ title: "热门", backButton: false, alpha: 1 })
         Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
           ForEach(HotViewModel.hotTabTitle, (tabItem, index) => {
             TabContent() {

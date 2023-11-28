@@ -1,12 +1,17 @@
 /**
  * 我的页面
  */
+import { CommonDialog } from '../../component/CommonDialog'
 import { RoutePath } from '../../route/RoutePath'
 import { Router } from '../../route/Router'
 import showToast from '../../utils/ToastUtils'
 
 @Component
 export struct MinePage {
+  dialogController: CustomDialogController = new CustomDialogController({
+    builder: CommonDialog({ title: '关于', description: '描述' })
+  })
+
   build() {
     Scroll() {
       Column() {
@@ -35,7 +40,9 @@ export struct MinePage {
         this.itemBuilder("热门", $r('app.media.icon_topic'), () => {
           Router.push(RoutePath.ContainerPage, { "containerType": "topic" })
         })
-        this.itemBuilder("关于", $r('app.media.icon_about'))
+        this.itemBuilder("关于", $r('app.media.icon_about'), () => {
+          this.dialogController.open()
+        })
       }.justifyContent(FlexAlign.Start).height("100%")
     }
   }
@@ -63,7 +70,6 @@ export struct MinePage {
     .width("100%")
     .onClick(() => {
       onItemClick?.()
-      showToast(title)
     })
   }
 }

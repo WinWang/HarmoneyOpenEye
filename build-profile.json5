@@ -6,9 +6,9 @@
         "type": "HarmonyOS",
         "material": {
           "certpath": "/Users/winwang/.ohos/config/auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.cer",
-          "storePassword": "000000195B12A491877DA47886837A3F581104BEC541839B0D3E9329118613C8D765C0E18A15AE1CB6",
+          "storePassword": "0000001B9F1CC0630C10A6C408376C4020D5A83E6A47658C53A09D7D72859D2DFFD53C5DFD6B5CB1A24AFA",
           "keyAlias": "debugKey",
-          "keyPassword": "00000019F967498EE4BE69311ACFF6C09C7FA4918E151BEFEFBFD5949870892B499DB1109FE6927F28",
+          "keyPassword": "0000001B687352CEC1755F123E82FB9A6A58AE6F168E879DCDDF5CF5AA93AA09E958448F86DEE802691B9D",
           "profile": "/Users/winwang/.ohos/config/auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.p7b",
           "signAlg": "SHA256withECDSA",
           "storeFile": "/Users/winwang/.ohos/config/auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.p12"
@@ -19,9 +19,9 @@
         "type": "HarmonyOS",
         "material": {
           "certpath": "/Users/winwang/.ohos/config/auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.cer",
-          "storePassword": "00000019A6FF3FFE6B235EEBC1F561A7DF3F0531964FB57F36407DD1E19F877459C525AD13D7A4FC14",
+          "storePassword": "00000019718FE916375E0C64AA27B201EDEABC0F9D95040DCA3BB0A2E328B8A75E7191B73B8D447960",
           "keyAlias": "debugKey",
-          "keyPassword": "00000019AEEC37D9C1C9929E26A62D25EE928910D20E4BB51A073D3C66D95054DD671C65330C29C646",
+          "keyPassword": "00000019D18F54F59EA300CC53C8F2CDD9286E9E8B0B5D73ABF06C74CECBB18F017EAA40CFB461911F",
           "profile": "/Users/winwang/.ohos/config/auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.p7b",
           "signAlg": "SHA256withECDSA",
           "storeFile": "/Users/winwang/.ohos/config/auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.p12"

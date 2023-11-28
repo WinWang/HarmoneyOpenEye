@@ -19,7 +19,7 @@ struct DetailPage {
 
   build() {
     Column() {
-      CommonTopBar({ title: '视频详情' })
+      CommonTopBar({ title: '视频详情', alpha: 1 })
       this.headerPlayer()
       VideoBottomComponent({
         relationId: this.relationId,
