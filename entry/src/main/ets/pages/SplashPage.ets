@@ -3,11 +3,11 @@ import { RoutePath } from '../route/RoutePath'
 
 @Entry
 @Component
-export struct SplagePage {
+export struct SplashPage {
   aboutToAppear() {
     setTimeout(() => {
       router.replaceUrl({ url: RoutePath.MainPage })
-    }, 500)
+    }, 2000)
   }
 
   build() {

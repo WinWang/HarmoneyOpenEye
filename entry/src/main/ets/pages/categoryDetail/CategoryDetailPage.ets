@@ -77,6 +77,7 @@ struct CategoryDetailPage {
             })
             .onScroll((scrollOffset: number, scrollState: ScrollState) => {
               this.scrollOffset += scrollOffset
+              LogUtils.debug("Scroll滚动距离", `${scrollState}  >>  ${scrollOffset}`)
               this.dispatchScrollOffset()
             })
             .onScrollStop(() => {
@@ -84,6 +85,7 @@ struct CategoryDetailPage {
             })
           }.onRefreshing(() => {
             categoryDetailViewModel.pageIndex = 0
+            this.scrollOffset = 0
             this.loadNet()
           })
         }

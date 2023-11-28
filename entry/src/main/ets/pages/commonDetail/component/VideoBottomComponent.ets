@@ -55,6 +55,7 @@ export struct VideoBottomComponent {
         .height($r('app.float.size_70'))
         .alt($r('app.media.back_placeholder'))
         .border({ radius: $r("app.float.size_5") })
+        .backgroundColor($r('app.color.color_f5f5f5'))
       Column() {
         Text(item.data?.title)
           .maxLines(1)

@@ -63,6 +63,16 @@
     {
       "name": "net_error",
       "value": "网络错误"
+    },
+
+    {
+      "name": "dialog_about_title",
+      "value": "关于"
+    },
+
+    {
+      "name": "project_desc",
+      "value": "该项目是基于鸿蒙HarmonyOS Api9版本开发的开眼App（主要使用ArkTs+ArkUI开发），主要用来学习和了解HarmonyOS开发App的使用方式；项目封装了基本的网络请求以及页面网络状态管理等，也封装了部分基础组件和基础组件的使用范例供大家参考借鉴，如果大佬们有好的实现方式也请不吝赐教！！！"
     }
   ]
 }

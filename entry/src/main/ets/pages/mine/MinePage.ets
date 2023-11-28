@@ -8,9 +8,19 @@ import showToast from '../../utils/ToastUtils'
 
 @Component
 export struct MinePage {
+  @State dialogTitle: Resource = $r('app.string.dialog_about_title')
+  @State dialogContent: Resource = $r('app.string.project_desc')
   dialogController: CustomDialogController = new CustomDialogController({
-    builder: CommonDialog({ title: '关于', description: '描述' })
+    builder: CommonDialog({ title: $dialogTitle, description: $dialogContent })
   })
+
+  aboutToAppear() {
+
+  }
+
+  aboutToDisappear() {
+    this.dialogController = null;
+  }
 
   build() {
     Scroll() {
