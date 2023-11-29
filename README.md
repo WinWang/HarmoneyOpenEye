@@ -28,7 +28,7 @@
 
 ## 项目演示图片 <br>
 
-<img src="https://github.com/WinWang/HarmoneyOpen/blob/master/screenShot/small-gif.gif" width="30%">
+<img src="https://github.com/WinWang/HarmoneyOpenEye/blob/master/screenShot/small-gif.gif" width="30%">
 <br/>
 
 <div style="display: flex; flex-direction: row">
