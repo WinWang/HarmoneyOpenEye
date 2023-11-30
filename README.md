@@ -1,4 +1,4 @@
-# 华为鸿蒙HarmoneyOpenEye
+# 华为鸿蒙HarmonyOpenEye
 华为鸿蒙Harmony开眼App（项目整体基于Api9+Stage模式+ArkTs+ArkUI）
 鸿蒙Harmony版本开眼APP，具体包含功能如下：<br>
 1、常用组件的提取；<br>
