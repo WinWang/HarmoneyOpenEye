@@ -1,4 +1,5 @@
 import { CommonTopBar } from '../../component/CommonTopBar'
+import { LogUtils } from '../../utils/LogUtils'
 import FindViewModel from '../../viewmodel/FindViewModel'
 import { CategoryPage } from './category/CategoryPage'
 import { FocusPage } from './focus/FocusPage'
@@ -9,8 +10,9 @@ import { TopicPage } from './topic/TopicPage'
  */
 @Component
 export struct FindPage {
-  @State currentIndex: number = 0
+  @Provide findCurrentIndex: number = 0
   private controller: TabsController = new TabsController()
+  @Consume @Watch('onTabSelected') homeTabSelected: number
 
   aboutToAppear() {
     this.loadNet()
@@ -18,6 +20,10 @@ export struct FindPage {
 
   async loadNet() {
 
+  }
+
+  onTabSelected() {
+    LogUtils.debug("Find-onHomeTabSelected>>>", `${this.homeTabSelected}`)
   }
 
   build() {
@@ -40,7 +46,7 @@ export struct FindPage {
         .barHeight($r("app.float.size_50"))
         .barMode(BarMode.Fixed)
         .onChange((index) => {
-          this.currentIndex = index
+          this.findCurrentIndex = index
         })
       }
     }
@@ -51,16 +57,16 @@ export struct FindPage {
   @Builder TabBuilder(index: number, name: string) {
     Column() {
       Text(name)
-        .fontColor(this.currentIndex === index ? $r("app.color.color_white") : $r("app.color.color_f5f5f5"))
+        .fontColor(this.findCurrentIndex === index ? $r("app.color.color_white") : $r("app.color.color_f5f5f5"))
         .fontSize($r('app.float.size_text_15'))
-        .fontWeight(this.currentIndex === index ? 500 : 400)
+        .fontWeight(this.findCurrentIndex === index ? 500 : 400)
         .height($r("app.float.size_45"))
         .flexGrow(1)
         .textAlign(TextAlign.Center)
       Divider()
         .strokeWidth(5)
         .color($r("app.color.color_white"))
-        .opacity(this.currentIndex === index ? 1 : 0)
+        .opacity(this.findCurrentIndex === index ? 1 : 0)
         .width($r("app.float.size_80"))
         .lineCap(LineCapStyle.Round)
     }

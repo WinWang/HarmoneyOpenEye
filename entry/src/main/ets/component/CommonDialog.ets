@@ -17,8 +17,10 @@ export struct CommonDialog {
   private positiveCallback: () => void
   //取消按钮回调
   private negativeCallback: () => void
-  //单个按钮
-  private singleButton = false
+  //展示确认按钮
+  private showPositive = true
+  //展示取消按钮
+  private showNegative = true
   //弹窗控制器
   controller: CustomDialogController
 
@@ -54,15 +56,20 @@ export struct CommonDialog {
             .flexShrink(1)
             .textAlign(TextAlign.Center)
             .layoutWeight(1)
+            .visibility(this.showNegative ? Visibility.Visible : Visibility.None)
             .onClick(() => {
               this.negativeCallback?.()
               this.controller.close()
             })
-          Divider().color($r('app.color.color_f5f5f5')).vertical(true)
+          Divider()
+            .color($r('app.color.color_f5f5f5'))
+            .vertical(true)
+            .visibility((this.showPositive && this.showNegative) ? Visibility.Visible : Visibility.None)
           Text(this.positiveText)
             .textAlign(TextAlign.Center)
             .layoutWeight(1)
             .fontColor($r('app.color.color_red'))
+            .visibility(this.showPositive ? Visibility.Visible : Visibility.None)
             .onClick(() => {
               this.positiveCallback?.()
               this.controller.close()

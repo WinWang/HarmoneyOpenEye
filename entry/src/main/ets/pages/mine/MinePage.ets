@@ -11,7 +11,7 @@ export struct MinePage {
   @State dialogTitle: Resource = $r('app.string.dialog_about_title')
   @State dialogContent: Resource = $r('app.string.project_desc')
   dialogController: CustomDialogController = new CustomDialogController({
-    builder: CommonDialog({ title: $dialogTitle, description: $dialogContent })
+    builder: CommonDialog({ title: $dialogTitle, description: $dialogContent, showPositive: false })
   })
 
   aboutToAppear() {

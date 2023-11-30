@@ -15,6 +15,7 @@ import { MinePage } from './mine/MinePage'
 @Component
 struct MainPage {
   @State selectedIndex: number = 0
+  @Provide homeTabSelected: number = 0
 
   aboutToAppear() {
 
@@ -52,6 +53,7 @@ struct MainPage {
       .barHeight($r('app.float.tab_bar_height'))
       .onChange((index: number) => {
         this.selectedIndex = index;
+        this.homeTabSelected = index
       })
     }
   }

@@ -1,5 +1,6 @@
 import router from '@ohos.router'
 import { CommonTopBar } from '../../component/CommonTopBar'
+import { VideoComponent } from '../../component/VideoComponent'
 import { LogUtils } from '../../utils/LogUtils'
 import { VideoBottomComponent } from './component/VideoBottomComponent'
 
@@ -35,37 +36,9 @@ struct DetailPage {
 
   @Builder
   headerPlayer() {
-    Video({
-      src: this.playUrl,
-      controller: this.controller,
-    })
+    VideoComponent({ showControls: $showControls, playUrl: $playUrl, isAutoPlay: this.isAutoPlay })
       .width('100%')
       .height($r('app.float.size_250'))
-      .autoPlay(this.isAutoPlay)
-      .controls(this.showControls)
-      .onStart(() => {
-        LogUtils.info('onStart')
-      })
-      .onPause(() => {
-        LogUtils.info('onPause')
-      })
-      .onFinish(() => {
-        LogUtils.info('onFinish')
-      })
-      .onError(() => {
-        LogUtils.info('onError')
-      })
-      .onPrepared((e) => {
-        LogUtils.info('onPrepared is ' + e.duration)
-      })
-      .onSeeking((e) => {
-        LogUtils.info('onSeeking is ' + e.time)
-      })
-      .onSeeked((e) => {
-        LogUtils.info('onSeeked is ' + e.time)
-      })
-      .onUpdate((e) => {
-        LogUtils.info('onUpdate is ' + e.time)
-      })
+
   }
 }

@@ -6,6 +6,7 @@ import { HomeModelIssueListItemList } from '../../model/HomeModel'
 import { RoutePath } from '../../route/RoutePath'
 import { Router } from '../../route/Router'
 import { CommonSkeleton } from '../../skelton/CommonSkeleton'
+import { LogUtils } from '../../utils/LogUtils'
 import HomeViewModel from '../../viewmodel/HomeViewModel'
 import { HomeListItemComponent } from './component/HomeListItemComponent'
 
@@ -18,12 +19,17 @@ export struct HomePage {
   @State isRefreshing: boolean = false
   @State dataList: HomeModelIssueListItemList[] = []
   @State showLoading: boolean = false
+  @Consume @Watch('onTabSelected') homeTabSelected: number
 
   aboutToAppear() {
     HomeViewModel.observeState(state => {
       this.viewState = state
     })
     this.loadNet()
+  }
+
+  onTabSelected() {
+    LogUtils.debug("onTabSelected>>>", `${this.homeTabSelected}`)
   }
 
   loadNet() {

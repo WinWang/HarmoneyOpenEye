@@ -2,6 +2,7 @@ import { RefreshFooter } from '../../../component/RefreshFooter'
 import { StateComponent } from '../../../component/StateComponent'
 import { ViewStateConstant } from '../../../constants/ViewStateConstant'
 import { FocusModelItemList } from '../../../model/FocusModel'
+import { LogUtils } from '../../../utils/LogUtils'
 import FocusViewModel from '../../../viewmodel/FocusViewModel'
 import { FocusItemComponent } from './component/FocusItemComponent'
 
@@ -11,10 +12,38 @@ export struct FocusPage {
   @State isRefreshing: boolean = false
   @State dataList: FocusModelItemList[] = []
   @State showLoading: boolean = false
+  @Consume @Watch("onHomeTabSelected") homeTabSelected: number
+  @Consume @Watch("onFindTabSelectedIndex") findCurrentIndex: number
+  private hasInit = false
 
   aboutToAppear() {
     FocusViewModel.observeState((state) => this.viewState = state)
-    this.loadNet()
+    if (this.hasInit) {
+      this.loadNet()
+    }
+  }
+
+  /**
+   * 懒加载处理逻辑
+   */
+  onHomeTabSelected() {
+    LogUtils.debug("Focus-homeTabSelectedIndex>>>", `FindIndex:${this.findCurrentIndex}>>>HomeIndex${this.homeTabSelected}`)
+    this.initData()
+  }
+
+  /**
+   * 懒加载处理逻辑
+   */
+  onFindTabSelectedIndex() {
+    LogUtils.debug("Focus-onFindTabSelectedIndex>>>", `FindIndex:${this.findCurrentIndex}>>>HomeIndex${this.homeTabSelected}`)
+    this.initData()
+  }
+
+  initData() {
+    if (!this.hasInit && this.homeTabSelected == 1 && this.findCurrentIndex == 0) {
+      this.loadNet()
+      this.hasInit = true
+    }
   }
 
   loadNet() {

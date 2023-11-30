@@ -17,7 +17,7 @@ struct ContainerPage {
 
   build() {
     Column() {
-      CommonTopBar({ title: this.title,alpha: 1 })
+      CommonTopBar({ title: this.title, alpha: 1 })
       Stack() {
         this.buildContent()
       }.layoutWeight(1)
@@ -28,11 +28,11 @@ struct ContainerPage {
   @Builder
   buildContent() {
     if (this.containerType == 'focus') {
-      FocusPage()
+      FocusPage({ hasInit: true })
     } else if (this.containerType == 'topic') {
-      TopicPage()
+      TopicPage({ hasInit: true })
     } else if (this.containerType == 'category') {
-      CategoryPage()
+      CategoryPage({ hasInit: true })
     } else {
       Text("暂未找到页面")
     }

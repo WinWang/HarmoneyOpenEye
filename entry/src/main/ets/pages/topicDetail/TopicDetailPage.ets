@@ -1,6 +1,7 @@
 import router from '@ohos.router'
 import { CommonTopBar } from '../../component/CommonTopBar'
 import { StateComponent } from '../../component/StateComponent'
+import { VideoComponent } from '../../component/VideoComponent'
 import { ViewStateConstant } from '../../constants/ViewStateConstant'
 import { TopicDetailModel, TopicDetailModelItemList } from '../../model/TopicDetailModel'
 import { LogUtils } from '../../utils/LogUtils'
@@ -16,6 +17,7 @@ struct TopicDetailPage {
   @State playIndex: number = -1
   @State isAutoPlay: boolean = true
   @State showControls: boolean = true
+  @State playUrl: string = ""
   private controller: VideoController = new VideoController()
 
   aboutToAppear() {
@@ -33,7 +35,7 @@ struct TopicDetailPage {
 
   build() {
     Column() {
-      CommonTopBar({ title: this.title,alpha: 1 })
+      CommonTopBar({ title: this.title, alpha: 1 })
       Stack() {
         StateComponent({ viewState: this.viewState, retryCallback: () => {
           this.loadNet()
@@ -100,39 +102,14 @@ struct TopicDetailPage {
   itemContent(item: TopicDetailModelItemList, index: number) {
     Column() {
       if (this.playIndex == index) {
-        Video({
-          src: item.data.content.data.playUrl,
-          controller: this.controller,
-          previewUri: item.data.content.data.cover.feed
+        VideoComponent({
+          showControls: $showControls,
+          playUrl: $playUrl,
+          isAutoPlay: this.isAutoPlay
         })
           .width('100%')
           .height($r('app.float.size_250'))
-          .autoPlay(this.isAutoPlay)
-          .controls(this.showControls)
-          .onStart(() => {
-            LogUtils.info('onStart')
-          })
-          .onPause(() => {
-            LogUtils.info('onPause')
-          })
-          .onFinish(() => {
-            LogUtils.info('onFinish')
-          })
-          .onError(() => {
-            LogUtils.info('onError')
-          })
-          .onPrepared((e) => {
-            LogUtils.info('onPrepared is ' + e.duration)
-          })
-          .onSeeking((e) => {
-            LogUtils.info('onSeeking is ' + e.time)
-          })
-          .onSeeked((e) => {
-            LogUtils.info('onSeeked is ' + e.time)
-          })
-          .onUpdate((e) => {
-            LogUtils.info('onUpdate is ' + e.time)
-          })
+
       } else {
         Stack() {
           Image(item.data.content.data.cover.feed)
@@ -146,6 +123,7 @@ struct TopicDetailPage {
             .alt($r('app.media.back_placeholder'))
             .onClick(() => {
               this.playIndex = index
+              this.playUrl = item.data.content.data.playUrl
             })
         }
       }

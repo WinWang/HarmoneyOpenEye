@@ -3,21 +3,51 @@ import { ViewStateConstant } from '../../../constants/ViewStateConstant'
 import { HomeModelIssueListItemList } from '../../../model/HomeModel'
 import { RoutePath } from '../../../route/RoutePath'
 import { Router } from '../../../route/Router'
+import { LogUtils } from '../../../utils/LogUtils'
 import { RankViewModel } from '../../../viewmodel/RankViewModel'
 import { HomeListItemComponent } from '../../home/component/HomeListItemComponent'
 
 @Component
 export struct RankPage {
   private rankType: string = "weekly"
+  private positionIndex: number = 0
   @State viewState: string = ViewStateConstant.VIEW_STATE_LOADING
   @State rankList: HomeModelIssueListItemList[] = []
+  @Consume @Watch("onHomeTabSelected") homeTabSelected: number
+  @Consume @Watch("onHotTabSelectedIndex") hotCurrentIndex: number
+  private hasInit = false
   private viewModel = new RankViewModel()
 
   aboutToAppear() {
     this.viewModel.observeState((state) => {
       this.viewState = state
     })
-    this.loadNet()
+    if (this.hasInit) {
+      this.loadNet()
+    }
+  }
+
+  /**
+   * 懒加载处理逻辑
+   */
+  onHomeTabSelected() {
+    LogUtils.debug("Focus-homeTabSelectedIndex>>>", `FindIndex:${this.hotCurrentIndex}>>>HomeIndex${this.homeTabSelected}`)
+    this.initData()
+  }
+
+  /**
+   * 懒加载处理逻辑
+   */
+  onHotTabSelectedIndex() {
+    LogUtils.debug("Focus-onFindTabSelectedIndex>>>", `FindIndex:${this.hotCurrentIndex}>>>HomeIndex${this.homeTabSelected}`)
+    this.initData()
+  }
+
+  initData() {
+    if (!this.hasInit && this.homeTabSelected == 2 && this.hotCurrentIndex == this.positionIndex) {
+      this.loadNet()
+      this.hasInit = true
+    }
   }
 
   loadNet() {
