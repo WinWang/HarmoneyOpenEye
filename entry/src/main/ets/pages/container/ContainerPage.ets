@@ -9,6 +9,8 @@ import { TopicPage } from '../find/topic/TopicPage'
 struct ContainerPage {
   @State containerType: string = 'focus'
   @State title: string = "关注"
+  @Provide findCurrentIndex: number = -1
+  @Provide homeTabSelected: number = -1
 
   aboutToAppear() {
     this.containerType = router.getParams()["containerType"]
