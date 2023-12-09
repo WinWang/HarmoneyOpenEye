@@ -1,5 +1,6 @@
 import { StateComponent } from '../../../component/StateComponent'
 import { ViewStateConstant } from '../../../constants/ViewStateConstant'
+import { BaseDataSourceWrapper } from '../../../model/BaseDataSourceWrapper'
 import { CategoryModel, CategoryModelChild } from '../../../model/CategoryModel'
 import { RoutePath } from '../../../route/RoutePath'
 import { Router } from '../../../route/Router'
@@ -11,6 +12,7 @@ import CategoryViewModel from '../../../viewmodel/CategoryViewModel'
 export struct CategoryPage {
   @State viewState: string = ViewStateConstant.VIEW_STATE_LOADING
   @State dataList: CategoryModel = []
+  @State dataSource: BaseDataSourceWrapper<CategoryModelChild> = new BaseDataSourceWrapper<CategoryModelChild>([])
   @Consume @Watch("onHomeTabSelected") homeTabSelected: number
   @Consume @Watch("onFindTabSelectedIndex") findCurrentIndex: number
   private hasInit = false
@@ -47,7 +49,9 @@ export struct CategoryPage {
 
   loadNet() {
     CategoryViewModel.getCategoryDataList((result) => {
+      //数据缓存-当让也可以把数据缓存的逻辑放在DataSource里面，目前我做的是全部替换
       this.dataList = result
+      this.dataSource = new BaseDataSourceWrapper<CategoryModelChild>(this.dataList)
     })
   }
 
@@ -57,7 +61,7 @@ export struct CategoryPage {
         this.loadNet()
       } }) {
         Grid() {
-          ForEach(this.dataList, (item: CategoryModelChild, index: number) => {
+          LazyForEach(this.dataSource, (item: CategoryModelChild, index: number) => {
             GridItem() {
               Stack() {
                 Image(ImageRegexUtils(item.bgPicture))

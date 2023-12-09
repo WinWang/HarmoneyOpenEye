@@ -5,13 +5,13 @@
         "name": "default",
         "type": "HarmonyOS",
         "material": {
-          "certpath": "/Users/winwang/.ohos/config/auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.cer",
-          "storePassword": "0000001B9F1CC0630C10A6C408376C4020D5A83E6A47658C53A09D7D72859D2DFFD53C5DFD6B5CB1A24AFA",
+          "certpath": "C:\\Users\\Administrator\\.ohos\\config\\auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.cer",
+          "storePassword": "0000001B09E090AC4DBC3FC5F732D2D9C7F78FD6FDB2E722B3EDDA6BB67568E2AAC205C58E1A3503BE40BE",
           "keyAlias": "debugKey",
-          "keyPassword": "0000001B687352CEC1755F123E82FB9A6A58AE6F168E879DCDDF5CF5AA93AA09E958448F86DEE802691B9D",
-          "profile": "/Users/winwang/.ohos/config/auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.p7b",
+          "keyPassword": "0000001B8E1CD5CE68AB68ED21B4523A81D97F92DFA59E96D894937BFB6F5918581ACE030224E9EB2508EC",
+          "profile": "C:\\Users\\Administrator\\.ohos\\config\\auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.p7b",
           "signAlg": "SHA256withECDSA",
-          "storeFile": "/Users/winwang/.ohos/config/auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.p12"
+          "storeFile": "C:\\Users\\Administrator\\.ohos\\config\\auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.p12"
         }
       },
       {
@@ -19,9 +19,9 @@
         "type": "HarmonyOS",
         "material": {
           "certpath": "/Users/winwang/.ohos/config/auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.cer",
-          "storePassword": "00000019718FE916375E0C64AA27B201EDEABC0F9D95040DCA3BB0A2E328B8A75E7191B73B8D447960",
+          "storePassword": "00000019A6FF3FFE6B235EEBC1F561A7DF3F0531964FB57F36407DD1E19F877459C525AD13D7A4FC14",
           "keyAlias": "debugKey",
-          "keyPassword": "00000019D18F54F59EA300CC53C8F2CDD9286E9E8B0B5D73ABF06C74CECBB18F017EAA40CFB461911F",
+          "keyPassword": "00000019AEEC37D9C1C9929E26A62D25EE928910D20E4BB51A073D3C66D95054DD671C65330C29C646",
           "profile": "/Users/winwang/.ohos/config/auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.p7b",
           "signAlg": "SHA256withECDSA",
           "storeFile": "/Users/winwang/.ohos/config/auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.p12"
