@@ -1,13 +1,16 @@
 import { CommonConstants } from '../constants/CommonConstants'
+import { BannerDataModelData } from '../model/BannerDataModel'
 import { CategoryModel } from '../model/CategoryModel'
 import { FocusModel } from '../model/FocusModel'
 import { HomeModel } from '../model/HomeModel'
 import { TopicDetailModel } from '../model/TopicDetailModel'
 import { TopicModel } from '../model/TopicModel'
+import { ApiResponse } from './AxiosHttp'
 import axiosClient from './AxiosRequest'
 import httpClient from './request'
 
 let baseUrl = "https://baobab.kaiyanapp.com/"
+let wanAndroidUrl = "https://www.wanandroid.com/"
 
 /**
  * 请求首页数据--系统http请求
@@ -125,6 +128,20 @@ export function getCategoryDetailList(id: number, start: number) {
     }
   )
 }
+
+/**
+ * 获取wanAndroid首页Banner数据，测试校验API data：T泛型数据
+ * @returns
+ */
+export function getWanAndroidBanner() {
+  return axiosClient.get<ApiResponse<BannerDataModelData[]>>(
+    {
+      url: wanAndroidUrl + "/banner/json",
+      checkResultCode: true
+    }
+  )
+}
+
 
 
 

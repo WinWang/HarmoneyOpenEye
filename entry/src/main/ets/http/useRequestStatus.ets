@@ -1,5 +1,5 @@
 import { ViewStateConstant } from '../constants/ViewStateConstant';
-import { ApiResponse } from './http';
+import { ApiResponse } from './AxiosHttp';
 import axios from "@ohos/axios"
 
 
@@ -28,10 +28,7 @@ const useRequestStatus = (stateCallback?: (state: string) => void, checkResult: 
           const resultData = result.data;
           if (result.errorCode !== 0) {
             updateViewState(ViewStateConstant.VIEW_STATE_ERROR)
-          } else if (
-            Array.isArray(resultData) &&
-            resultData.length === 0
-          ) {
+          } else if (Array.isArray(resultData) && resultData.length === 0) {
             updateViewState(ViewStateConstant.VIEW_STATE_EMPTY)
           } else {
             updateViewState(ViewStateConstant.VIEW_STATE_SUCCESS)

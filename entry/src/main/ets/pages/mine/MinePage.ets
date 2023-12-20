@@ -4,7 +4,6 @@
 import { CommonDialog } from '../../component/CommonDialog'
 import { RoutePath } from '../../route/RoutePath'
 import { Router } from '../../route/Router'
-import showToast from '../../utils/ToastUtils'
 
 @Component
 export struct MinePage {
@@ -49,6 +48,9 @@ export struct MinePage {
         })
         this.itemBuilder("热门", $r('app.media.icon_topic'), () => {
           Router.push(RoutePath.ContainerPage, { "containerType": "topic" })
+        })
+        this.itemBuilder("测试", $r('app.media.icon_topic'), () => {
+          Router.push(RoutePath.TestPage)
         })
         this.itemBuilder("关于", $r('app.media.icon_about'), () => {
           this.dialogController.open()

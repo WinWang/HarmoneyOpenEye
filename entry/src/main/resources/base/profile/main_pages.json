@@ -5,6 +5,7 @@
     "pages/container/ContainerPage",
     "pages/commonDetail/DetailPage",
     "pages/topicDetail/TopicDetailPage",
-    "pages/categoryDetail/CategoryDetailPage"
+    "pages/categoryDetail/CategoryDetailPage",
+    "pages/test/TestPage"
   ]
 }

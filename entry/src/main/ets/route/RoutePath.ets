@@ -9,4 +9,5 @@ export class RoutePath {
   static readonly TopicDetailPage = "pages/topicDetail/TopicDetailPage"
   static readonly DetailPage = "pages/commonDetail/DetailPage"
   static readonly CategoryDetailPage = "pages/categoryDetail/CategoryDetailPage"
+  static readonly TestPage = "pages/test/TestPage"
 }

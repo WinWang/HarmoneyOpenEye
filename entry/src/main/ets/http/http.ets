@@ -2,8 +2,6 @@
  * 定义接口响应包装类
  */
 import http from '@ohos.net.http';
-import axios   from "@ohos/axios"
-
 
 export interface BaseResponse {
   //wanAndroid-API响应体
@@ -41,7 +39,6 @@ class HttpBuilder {
   constructor(options: HttpRequestConfig) {
     this.httpClient = http.createHttp()
     this.config = options
-    axios.create()
     this.setupInterceptor()
   }
   /**
