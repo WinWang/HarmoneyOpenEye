@@ -6,6 +6,9 @@ import { FindPage } from './find/FindPage'
 import { HomePage } from './home/HomePage'
 import { HotPage } from './hot/HotPage'
 import { MinePage } from './mine/MinePage'
+import { LoadingDialog } from '../component/LoadingDialog'
+import emitter from '@ohos.events.emitter'
+import { loadingEvent } from '../http/AxiosRequest'
 
 @Extend(Image) function placeHolder(holderImage?: Resource) {
   .alt(holderImage?? $r('app.media.back_placeholder'))
@@ -16,9 +19,26 @@ import { MinePage } from './mine/MinePage'
 struct MainPage {
   @State selectedIndex: number = 0
   @Provide homeTabSelected: number = 0
+  @State loadingTips: string = "加载中..."
+  //全局的loading
+  loadingDialogController: CustomDialogController = new CustomDialogController({
+    builder: LoadingDialog({ loadingTips: this.loadingTips }),
+    autoCancel: false,
+    gridCount: 2
+  })
 
   aboutToAppear() {
+    emitter.on(loadingEvent, (event) => {
+      if (event.data.showLoading == true) {
+        this.loadingDialogController.open()
+      } else {
+        this.loadingDialogController.close()
+      }
+    })
+  }
 
+  aboutToDisappear() {
+    this.loadingDialogController = null
   }
 
   build() {

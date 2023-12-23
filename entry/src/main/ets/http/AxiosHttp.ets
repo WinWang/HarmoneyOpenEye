@@ -78,7 +78,7 @@ class AxiosHttpRequest {
     );
     this.instance.interceptors.response.use(
       this.interceptorHooks?.responseInterceptor,
-      this.interceptorHooks?.responseInterceptorCatch
+      this.interceptorHooks?.responseInterceptorCatch,
     );
   }
 

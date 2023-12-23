@@ -2,6 +2,26 @@ import AxiosHttpRequest from './AxiosHttp'
 import { AxiosError, AxiosRequestHeaders } from '@ohos/axios';
 import { LogUtils } from '../utils/LogUtils';
 import showToast from '../utils/ToastUtils';
+import emitter from '@ohos.events.emitter';
+import { EventKeys } from '../event/EventKeys';
+
+export const loadingEvent = {
+  eventId: EventKeys.LOADING_DIALOG_EVENT
+}
+
+const showLoadingEvent = {
+  data: {
+    "showLoading": true,
+    "id": EventKeys.LOADING_DIALOG_EVENT
+  }
+}
+
+const hideLoadingEvent = {
+  data: {
+    "showLoading": false,
+    "id": EventKeys.LOADING_DIALOG_EVENT
+  }
+}
 
 /**
  * axios请求客户端创建
@@ -20,9 +40,11 @@ const axiosClient = new AxiosHttpRequest({
       LogUtils.debug('网络请求Request 请求链接:', `${config.url}`);
       LogUtils.debug('网络请求Request Params:', `\n${JSON.stringify(config.params, null, 2)}`);
       LogUtils.debug('网络请求Request Data:', `${JSON.stringify(config.data, null, 2)}`);
-      // if (config.showLoading) {
-      //   globalStore.setLoading(true)
-      // }
+      axiosClient.config.showLoading = config.showLoading
+      if (config.showLoading) {
+        emitter.emit(loadingEvent, showLoadingEvent)
+      }
+
       // if (config.checkLoginState) {
       //   StorageUtil.getValue<boolean>(LoginKey, (hasLogin) => {
       //     if (hasLogin) {
@@ -36,12 +58,17 @@ const axiosClient = new AxiosHttpRequest({
     },
     requestInterceptorCatch: (err) => {
       LogUtils.error("网络请求RequestError", err.toString())
-      // globalStore.setLoading(false)
+      if (axiosClient.config.showLoading) {
+        emitter.emit(loadingEvent, hideLoadingEvent)
+      }
       return err;
     },
     responseInterceptor: (response) => {
       //优先执行自己的请求响应拦截器，在执行通用请求request的
       // globalStore.setLoading(false)
+      if (axiosClient.config.showLoading) {
+        emitter.emit(loadingEvent, hideLoadingEvent)
+      }
       LogUtils.debug('网络请求响应Response:', `\n${JSON.stringify(response.data, null, 2)}`);
       if (response.status === 200) {
         // @ts-ignore
@@ -57,6 +84,9 @@ const axiosClient = new AxiosHttpRequest({
     },
     responseInterceptorCatch: (error) => {
       // globalStore.setLoading(false)
+      if (axiosClient.config.showLoading) {
+        emitter.emit(loadingEvent, hideLoadingEvent)
+      }
       LogUtils.error("网络请求响应异常", error.toString())
       errorHandler(error);
       return Promise.reject(error);
