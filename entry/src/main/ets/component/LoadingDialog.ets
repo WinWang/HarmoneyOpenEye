@@ -1,6 +1,8 @@
 /**
  * 通用loading
  */
+import { LogUtils } from '../utils/LogUtils'
+
 @CustomDialog
 export struct LoadingDialog {
   @Prop loadingTips: string
@@ -10,6 +12,7 @@ export struct LoadingDialog {
 
   aboutToAppear() {
     this.rotateAngle = 360
+    LogUtils.debug("Loading展示》》》》》")
   }
 
   build() {

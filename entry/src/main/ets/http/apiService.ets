@@ -138,7 +138,8 @@ export function getWanAndroidBanner() {
   return axiosClient.get<ApiResponse<BannerDataModelData[]>>(
     {
       url: wanAndroidUrl + "/banner/json",
-      checkResultCode: true
+      checkResultCode: true,
+      showLoading: true
     }
   )
 }

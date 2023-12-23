@@ -1,7 +1,32 @@
 {
   "app": {
     "signingConfigs": [
-
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\Administrator\\.ohos\\config\\auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.cer",
+          "storePassword": "0000001B09E090AC4DBC3FC5F732D2D9C7F78FD6FDB2E722B3EDDA6BB67568E2AAC205C58E1A3503BE40BE",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B8E1CD5CE68AB68ED21B4523A81D97F92DFA59E96D894937BFB6F5918581ACE030224E9EB2508EC",
+          "profile": "C:\\Users\\Administrator\\.ohos\\config\\auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\Administrator\\.ohos\\config\\auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.p12"
+        }
+      },
+      {
+        "name": "OpenEye",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/winwang/.ohos/config/auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.cer",
+          "storePassword": "00000019A6FF3FFE6B235EEBC1F561A7DF3F0531964FB57F36407DD1E19F877459C525AD13D7A4FC14",
+          "keyAlias": "debugKey",
+          "keyPassword": "00000019AEEC37D9C1C9929E26A62D25EE928910D20E4BB51A073D3C66D95054DD671C65330C29C646",
+          "profile": "/Users/winwang/.ohos/config/auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/winwang/.ohos/config/auto_debug_HarmoneyOpenEye_com.winwang.harmonyOpenEye_890086200300025242.p12"
+        }
+      }
     ],
     "compileSdkVersion": 9,
     "compatibleSdkVersion": 9,

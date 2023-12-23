@@ -65,7 +65,6 @@ struct CategoryDetailPage {
                 })
 
               })
-
               ListItem() {
                 RefreshFooter({ showFooter: this.showLoading })
               }
@@ -73,6 +72,7 @@ struct CategoryDetailPage {
             .height("100%")
             .width("100%")
             .onReachEnd(() => {
+              this.showLoading = true
               this.loadNet()
             })
             .onScroll((scrollOffset: number, scrollState: ScrollState) => {
@@ -81,6 +81,7 @@ struct CategoryDetailPage {
               this.dispatchScrollOffset()
             })
             .onScrollStop(() => {
+              LogUtils.debug("Scroll滚动距离", "scrollStateStop")
               this.dispatchScrollOffset()
             })
           }.onRefreshing(() => {

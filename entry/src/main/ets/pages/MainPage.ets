@@ -8,11 +8,7 @@ import { HotPage } from './hot/HotPage'
 import { MinePage } from './mine/MinePage'
 import { LoadingDialog } from '../component/LoadingDialog'
 import emitter from '@ohos.events.emitter'
-import { loadingEvent } from '../http/AxiosRequest'
-
-@Extend(Image) function placeHolder(holderImage?: Resource) {
-  .alt(holderImage?? $r('app.media.back_placeholder'))
-}
+import { EventKeys, loadingEvent } from '../event/EventKeys'
 
 @Entry
 @Component
@@ -20,25 +16,32 @@ struct MainPage {
   @State selectedIndex: number = 0
   @Provide homeTabSelected: number = 0
   @State loadingTips: string = "加载中..."
+  @State loadingShow: boolean = false
   //全局的loading
   loadingDialogController: CustomDialogController = new CustomDialogController({
     builder: LoadingDialog({ loadingTips: this.loadingTips }),
     autoCancel: false,
-    gridCount: 2
+    gridCount: 2,
+    cancel: () => {
+      this.loadingShow = false
+    }
   })
 
   aboutToAppear() {
     emitter.on(loadingEvent, (event) => {
-      if (event.data.showLoading == true) {
+      if (event.data.showLoading == true && !this.loadingShow) {
         this.loadingDialogController.open()
+        this.loadingShow = true
       } else {
         this.loadingDialogController.close()
+        this.loadingShow = false
       }
     })
   }
 
   aboutToDisappear() {
     this.loadingDialogController = null
+    emitter.off(EventKeys.LOADING_DIALOG_EVENT)
   }
 
   build() {

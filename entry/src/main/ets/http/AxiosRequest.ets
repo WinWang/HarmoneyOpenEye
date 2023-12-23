@@ -3,23 +3,17 @@ import { AxiosError, AxiosRequestHeaders } from '@ohos/axios';
 import { LogUtils } from '../utils/LogUtils';
 import showToast from '../utils/ToastUtils';
 import emitter from '@ohos.events.emitter';
-import { EventKeys } from '../event/EventKeys';
-
-export const loadingEvent = {
-  eventId: EventKeys.LOADING_DIALOG_EVENT
-}
+import { loadingEvent } from '../event/EventKeys';
 
 const showLoadingEvent = {
   data: {
-    "showLoading": true,
-    "id": EventKeys.LOADING_DIALOG_EVENT
+    "showLoading": true
   }
 }
 
 const hideLoadingEvent = {
   data: {
-    "showLoading": false,
-    "id": EventKeys.LOADING_DIALOG_EVENT
+    "showLoading": false
   }
 }
 
@@ -44,7 +38,6 @@ const axiosClient = new AxiosHttpRequest({
       if (config.showLoading) {
         emitter.emit(loadingEvent, showLoadingEvent)
       }
-
       // if (config.checkLoginState) {
       //   StorageUtil.getValue<boolean>(LoginKey, (hasLogin) => {
       //     if (hasLogin) {

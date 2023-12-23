@@ -1,5 +1,8 @@
 type EventHandler<T> = (data: T) => void;
 
+/**
+ * 系统有内部实现的emitter作为事件总线，可不引用该类实现
+ */
 export default class EventBus {
   private static instance: EventBus;
   private listeners: Record<string, EventHandler<any>[]> = {};
