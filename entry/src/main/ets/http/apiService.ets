@@ -56,6 +56,9 @@ export function getFocusData(pageIndex: number = 0) {
 export function getCategories() {
   return axiosClient.get<CategoryModel>({
     url: baseUrl + "api/v4/categories",
+    showLoading: true,
+    checkLoginState: true,
+    needJumpToLogin: true
   })
 }
 

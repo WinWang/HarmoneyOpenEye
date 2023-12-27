@@ -35,7 +35,7 @@ export interface ApiResponse<T = any> extends BaseResponse {
  * 之后请求实例传入的options为继承了AxiosRequestConfig的自定义类型
  */
 interface InterceptorHooks {
-  requestInterceptor?: (config: HttpRequestConfig) => HttpRequestConfig;
+  requestInterceptor?: (config: HttpRequestConfig) => Promise<HttpRequestConfig>;
   requestInterceptorCatch?: (error: any) => any;
   responseInterceptor?: (response: AxiosResponse) => AxiosResponse | Promise<AxiosResponse>;
   responseInterceptorCatch?: (error: any) => any;

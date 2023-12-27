@@ -1,6 +1,9 @@
 import { CommonTopBar } from '../../component/CommonTopBar'
 import { StateComponent } from '../../component/StateComponent'
+import { StorageKeys } from '../../constants/StorageKeys'
 import { ViewStateConstant } from '../../constants/ViewStateConstant'
+import { StorageUtils } from '../../utils/StorageUtils'
+import showToast from '../../utils/ToastUtils'
 import TestViewModel from '../../viewmodel/TestViewModel'
 
 @Entry
@@ -25,6 +28,14 @@ struct TestPage {
   build() {
     Column() {
       CommonTopBar({ title: '测试页面', alpha: 1 })
+      Button("测试Storage模拟登陆").onClick(() => {
+        StorageUtils.put(StorageKeys.USER_LOGIN, true)
+        setTimeout(() => {
+          StorageUtils.get(StorageKeys.USER_LOGIN).then((result) => {
+            showToast(result.toString())
+          })
+        }, 3000)
+      })
       StateComponent({
         viewState: this.viewState,
         retryCallback: () => {
