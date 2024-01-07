@@ -1,7 +1,7 @@
 /**
  * 热门页面
  */
-import { CommonTopBar } from '../../component/CommonTopBar'
+import { CommonTopBar } from '../../views/CommonTopBar'
 import { LogUtils } from '../../utils/LogUtils'
 import HotViewModel from '../../viewmodel/HotViewModel'
 import { RankPage } from './rank/RankPage'

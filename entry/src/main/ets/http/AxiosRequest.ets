@@ -30,10 +30,9 @@ const axiosClient = new AxiosHttpRequest({
       if (config.showLoading) {
         showLoadingDialog("加载中...")
       }
-      LogUtils.debug('网络请求Request Login', "..........");
       if (config.checkLoginState) {
         let hasLogin = await StorageUtils.get(StorageKeys.USER_LOGIN, false)
-        LogUtils.debug('网络请求Request Login', `${hasLogin.toString()}`);
+        LogUtils.debug('网络请求Request 登录状态校验>>>', `${hasLogin.toString()}`);
         if (hasLogin) {
           return config
         } else {

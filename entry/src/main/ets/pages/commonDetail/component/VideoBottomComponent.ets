@@ -1,4 +1,4 @@
-import { StateComponent } from '../../../component/StateComponent'
+import { StateComponent } from '../../../views/StateComponent'
 import { ViewStateConstant } from '../../../constants/ViewStateConstant'
 import { HomeModelIssueListItemList } from '../../../model/HomeModel'
 import VideoDetailViewModel from '../../../viewmodel/VideoDetailViewModel'

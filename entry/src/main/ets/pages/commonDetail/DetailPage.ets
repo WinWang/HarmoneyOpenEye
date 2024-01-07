@@ -1,6 +1,6 @@
 import router from '@ohos.router'
-import { CommonTopBar } from '../../component/CommonTopBar'
-import { VideoComponent } from '../../component/VideoComponent'
+import { CommonTopBar } from '../../views/CommonTopBar'
+import { VideoComponent } from '../../views/VideoComponent'
 import { LogUtils } from '../../utils/LogUtils'
 import { VideoBottomComponent } from './component/VideoBottomComponent'
 

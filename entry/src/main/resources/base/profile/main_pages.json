@@ -6,6 +6,7 @@
     "pages/commonDetail/DetailPage",
     "pages/topicDetail/TopicDetailPage",
     "pages/categoryDetail/CategoryDetailPage",
-    "pages/test/TestPage"
+    "pages/test/TestPage",
+    "pages/hot/CoordinatePage"
   ]
 }

@@ -1,5 +1,5 @@
-import { RefreshFooter } from '../../../component/RefreshFooter'
-import { StateComponent } from '../../../component/StateComponent'
+import { RefreshFooter } from '../../../views/RefreshFooter'
+import { StateComponent } from '../../../views/StateComponent'
 import { ViewStateConstant } from '../../../constants/ViewStateConstant'
 import { TopicModelItemList } from '../../../model/TopicModel'
 import { RoutePath } from '../../../route/RoutePath'

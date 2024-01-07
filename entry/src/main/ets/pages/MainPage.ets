@@ -6,7 +6,7 @@ import { FindPage } from './find/FindPage'
 import { HomePage } from './home/HomePage'
 import { HotPage } from './hot/HotPage'
 import { MinePage } from './mine/MinePage'
-import { LoadingDialog } from '../component/LoadingDialog'
+import { LoadingDialog } from '../views/LoadingDialog'
 import emitter from '@ohos.events.emitter'
 import { EventKeys, loadingEvent } from '../event/EventKeys'
 

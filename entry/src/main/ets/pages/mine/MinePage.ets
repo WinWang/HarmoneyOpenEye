@@ -1,9 +1,12 @@
 /**
  * 我的页面
  */
-import { CommonDialog } from '../../component/CommonDialog'
+import { CommonDialog } from '../../views/CommonDialog'
+import { StorageKeys } from '../../constants/StorageKeys'
 import { RoutePath } from '../../route/RoutePath'
 import { Router } from '../../route/Router'
+import { LogUtils } from '../../utils/LogUtils'
+import { StorageUtils } from '../../utils/StorageUtils'
 
 @Component
 export struct MinePage {
@@ -49,8 +52,14 @@ export struct MinePage {
         this.itemBuilder("热门", $r('app.media.icon_topic'), () => {
           Router.push(RoutePath.ContainerPage, { "containerType": "topic" })
         })
-        this.itemBuilder("测试", $r('app.media.icon_topic'), () => {
+        this.itemBuilder("测试Result校验", $r('app.media.icon_topic'), () => {
           Router.push(RoutePath.TestPage)
+        })
+        this.itemBuilder("CoordinateLayout", $r('app.media.icon_topic'), () => {
+          Router.push(RoutePath.CoordinatePage)
+          StorageUtils.get(StorageKeys.USER_INFO_KEY, "").then(result => {
+            LogUtils.debug(`测试Storage>>>>>>${result}`)
+          })
         })
         this.itemBuilder("关于", $r('app.media.icon_about'), () => {
           this.dialogController.open()

@@ -10,4 +10,5 @@ export class RoutePath {
   static readonly DetailPage = "pages/commonDetail/DetailPage"
   static readonly CategoryDetailPage = "pages/categoryDetail/CategoryDetailPage"
   static readonly TestPage = "pages/test/TestPage"
+  static readonly CoordinatePage = "pages/hot/CoordinatePage"
 }

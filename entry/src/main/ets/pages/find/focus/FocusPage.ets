@@ -1,5 +1,5 @@
-import { RefreshFooter } from '../../../component/RefreshFooter'
-import { StateComponent } from '../../../component/StateComponent'
+import { RefreshFooter } from '../../../views/RefreshFooter'
+import { StateComponent } from '../../../views/StateComponent'
 import { ViewStateConstant } from '../../../constants/ViewStateConstant'
 import { FocusModelItemList } from '../../../model/FocusModel'
 import { LogUtils } from '../../../utils/LogUtils'
