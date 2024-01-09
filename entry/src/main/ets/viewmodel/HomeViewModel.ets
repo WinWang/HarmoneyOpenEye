@@ -20,21 +20,23 @@ export class HomeViewModel extends BaseViewModel {
    * @param resultCallback  结果返回
    */
   async getHomeList(resultCallback?: ResultCallback) {
-    await this.httpRequest().promise(getHomeListAxios(this.date).then(result => {
-      let items = result.issueList[0].itemList
-      let list = items.filter((item) => item.type == "video")
-      if (this.date == "") {
-        let bannerList: HomeModelIssueListItemList[]
-        let bannerBean: HomeModelIssueListItemList = {}
-        bannerList = items.filter((item) => item.type == "banner2")
-        if (bannerList.length > 0) {
-          bannerBean = { bannerList: bannerList, type: "banner" }
-          list.unshift(bannerBean)
+    await this.httpRequest()
+      .promise(getHomeListAxios(this.date), this.date == "" ? true : false)
+      .then(result => {
+        let items = result.issueList[0].itemList
+        let list = items.filter((item) => item.type == "video")
+        if (this.date == "") {
+          let bannerList: HomeModelIssueListItemList[]
+          let bannerBean: HomeModelIssueListItemList = {}
+          bannerList = items.filter((item) => item.type == "banner2")
+          if (bannerList.length > 0) {
+            bannerBean = { bannerList: bannerList, type: "banner" }
+            list.unshift(bannerBean)
+          }
         }
-      }
-      resultCallback?.(list)
-      this.spliteDate(result.nextPageUrl)
-    }), this.date == "" ? true : false)
+        resultCallback?.(list)
+        this.spliteDate(result.nextPageUrl)
+      })
   }
 
   private spliteDate(nextUrl: string) {

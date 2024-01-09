@@ -6,7 +6,9 @@ import { BaseViewModel, ResultCallback } from './BaseViewModel';
 
 export class CategoryViewModel extends BaseViewModel {
   async getCategoryDataList(resultCallback?: ResultCallback) {
-    await this.httpRequest().promise(getCategories().then(result => resultCallback?.(result)), true)
+    await this.httpRequest()
+      .promise(getCategories(), true)
+      .then(result => resultCallback?.(result))
   }
 }
 

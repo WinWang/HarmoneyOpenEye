@@ -71,6 +71,7 @@ struct CategoryDetailPage {
             }
             .height("100%")
             .width("100%")
+            .edgeEffect(EdgeEffect.None)
             .onReachEnd(() => {
               this.showLoading = true
               this.loadNet()

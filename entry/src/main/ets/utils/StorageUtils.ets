@@ -25,7 +25,9 @@ export class StorageUtils {
   static async put(key: string, value: ValueType, preferenceName: string = defaultPreferenceName) {
     // 获取实例
     let preferences = await this.getPreferences(preferenceName)
-    preferences.put(key, value)
+    await preferences.put(key, value)
+    //Tips Point ---此处一定要flush，要不然不能永久序列化到本地
+    await preferences.flush()
   }
   /**
    * 获取值

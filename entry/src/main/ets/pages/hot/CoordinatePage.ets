@@ -17,6 +17,7 @@ struct CoordinatePage {
   @State topBarAlpha: number = 0
   private topBarHeight: number = 90
   private topHeaderHeight: number = 300
+  private scrollMap: Map<number, number> = new Map()
 
   aboutToAppear() {
     HotViewModel.hotTabTitle.forEach((item) => {
@@ -46,9 +47,11 @@ struct CoordinatePage {
             .width("100%")
           Swiper(this.swiperController) {
             ForEach(HotViewModel.hotTabTitle, (tabItem, index) => {
-              Stack({ alignContent: Alignment.Top }) {
-                RankPage({ rankType: tabItem.rankType, positionIndex: index, hasInit: index == 0 ? true : false })
-              }
+              RankPage({
+                rankType: tabItem.rankType,
+                positionIndex: index,
+                hasInit: index == 0 ? true : false
+              })
             }, item => item)
           }
           .autoPlay(false)
@@ -63,16 +66,38 @@ struct CoordinatePage {
           .onChange((index: number) => {
             LogUtils.debug(index.toString())
             this.hotCurrentIndex = index
+            //测试记录滚动位置
+            let scrollPosition = this.scrollMap.get(index)
+            if (scrollPosition === undefined) {
+              if (this.offsetY >= 210) {
+                this.scroller.scrollTo({ yOffset: 210, xOffset: 0 })
+              }
+            } else {
+              LogUtils.debug(`监听 offSetY>>>${this.offsetY}`)
+              if (this.offsetY >= 210) {
+                if (scrollPosition >= 210) {
+                  scrollPosition -= this.offsetY
+                  this.scroller.scrollBy(0, scrollPosition)
+                } else {
+                  scrollPosition = 210 + scrollPosition
+                  this.scroller.scrollTo({ yOffset: scrollPosition, xOffset: 0 })
+                }
+              } else {
+                this.scroller.scrollTo({ yOffset: this.offsetY, xOffset: 0 })
+              }
+            }
+            LogUtils.debug(`选中监听：->${scrollPosition}`)
           })
         }
       }
       .onScroll((xOffset, yOffset) => {
         this.offsetY = this.scroller.currentOffset().yOffset;
-        LogUtils.debug(`滚动1Y>>${this.offsetY}`)
+        LogUtils.debug(`监听滚动1Y>>${this.offsetY}`)
+        this.scrollMap.set(this.hotCurrentIndex, this.offsetY)
         this.topBarAlpha = this.offsetY > this.topHeaderHeight ? 1 : this.offsetY / this.topHeaderHeight
         this.tabPosY = (this.topHeaderHeight - this.topBarHeight - this.offsetY <= 0)
           ? this.topBarHeight : this.topHeaderHeight - this.offsetY
-        LogUtils.debug(`滚动2Y>>${this.tabPosY}`)
+        LogUtils.debug(`监听滚动2Y>>${this.tabPosY}`)
       })
     }
   }

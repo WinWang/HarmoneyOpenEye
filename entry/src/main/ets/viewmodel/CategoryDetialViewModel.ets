@@ -6,10 +6,12 @@ export class CategoryDetailViewModel extends BaseViewModel {
   pageIndex: number = 0
 
   async getCategoryDetailList(resultCallback?: ResultCallback) {
-    await this.httpRequest().promise(getCategoryDetailList(this.id, this.pageIndex).then((result) => {
-      resultCallback?.(result.itemList)
-      this.pageIndex++
-    }), this.pageIndex == 0 ? true : false)
+    await this.httpRequest()
+      .promise(getCategoryDetailList(this.id, this.pageIndex), this.pageIndex == 0 ? true : false)
+      .then((result) => {
+        resultCallback?.(result.itemList)
+        this.pageIndex++
+      })
   }
 }
 

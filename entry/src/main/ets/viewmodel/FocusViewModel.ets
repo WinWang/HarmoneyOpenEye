@@ -5,10 +5,12 @@ export class FocusViewModel extends BaseViewModel {
   pageIndex: number = 0
 
   async getFocusData(resultCallback: ResultCallback) {
-    await this.httpRequest().promise(getFocusData(this.pageIndex).then((result) => {
-      this.pageIndex++
-      resultCallback(result.itemList)
-    }), this.pageIndex == 0 ? true : false)
+    await this.httpRequest()
+      .promise(getFocusData(this.pageIndex), this.pageIndex == 0 ? true : false)
+      .then((result) => {
+        this.pageIndex++
+        resultCallback(result.itemList)
+      })
   }
 }
 

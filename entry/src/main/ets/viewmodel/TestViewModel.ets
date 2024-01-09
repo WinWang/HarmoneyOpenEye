@@ -6,10 +6,12 @@ import { BaseViewModel, ResultCallback } from './BaseViewModel';
  */
 export class TestViewModel extends BaseViewModel {
   async getHomeBanner(resultCallback?: ResultCallback) {
-    await this.httpRequest(true).promise(getWanAndroidBanner()).then((result) => {
-      LogUtils.debug(`>>>>>>${JSON.stringify(result.data, null, 2)}`)
-      resultCallback?.(result.data)
-    })
+    await this.httpRequest(true)
+      .promise(getWanAndroidBanner())
+      .then((result) => {
+        LogUtils.debug(`>>>>>>${JSON.stringify(result.data, null, 2)}`)
+        resultCallback?.(result.data)
+      })
   }
 }
 

@@ -5,10 +5,12 @@ export class VideoDetailViewModel extends BaseViewModel {
   relationId: number = -1
 
   async getRelationList(resultCallback?: ResultCallback) {
-    await this.httpRequest().promise(getRelationList(this.relationId).then((result) => {
-      let filterList = result.itemList.filter((item) => item.type === "videoSmallCard")
-      resultCallback?.(filterList)
-    }), true)
+    await this.httpRequest()
+      .promise(getRelationList(this.relationId), true)
+      .then((result) => {
+        let filterList = result.itemList.filter((item) => item.type === "videoSmallCard")
+        resultCallback?.(filterList)
+      })
   }
 }
 
