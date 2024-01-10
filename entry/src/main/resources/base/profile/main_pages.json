@@ -8,6 +8,7 @@
     "pages/categoryDetail/CategoryDetailPage",
     "pages/test/TestPage",
     "pages/hot/CoordinatePage",
-    "pages/test/TestHorizontalPage"
+    "pages/test/TestHorizontalPage",
+    "pages/test/TestHorizontalPage2"
   ]
 }
