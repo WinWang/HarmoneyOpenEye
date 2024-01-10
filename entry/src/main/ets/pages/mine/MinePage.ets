@@ -61,6 +61,9 @@ export struct MinePage {
             LogUtils.debug(`测试Storage>>>>>>${result}`)
           })
         })
+        this.itemBuilder("HorizontalScroll1", $r('app.media.icon_topic'), () => {
+          Router.push(RoutePath.TestHorizontalPage)
+        })
         this.itemBuilder("关于", $r('app.media.icon_about'), () => {
           this.dialogController.open()
         })
