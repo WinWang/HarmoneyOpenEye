@@ -1,6 +1,12 @@
 import { LogUtils } from '../../utils/LogUtils'
 import { CommonTopBar } from '../../views/CommonTopBar'
 
+
+
+/**
+ * 这种方式实现的不可取，初始化N个Scroller+复用滚动同步太麻烦了
+ */
+
 @Entry
 @Component
 struct TestHorizontalPage {
@@ -80,6 +86,7 @@ struct TestHorizontalPage {
       }
       .width('100%')
       .height("100%")
+      .cachedCount(100)
       .flexGrow(1)
     }
     .width("100%")
