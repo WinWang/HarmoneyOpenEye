@@ -1,3 +1,5 @@
+# 2024-2-23 Tips develop11分支已适配DevEco4.0+API 11版本
+
 # 华为鸿蒙HarmonyOpenEye
 华为鸿蒙Harmony开眼App（项目整体基于Api9+Stage模式+ArkTs+ArkUI）
 鸿蒙Harmony版本开眼APP，具体包含功能如下：<br>
