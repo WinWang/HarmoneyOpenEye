@@ -1,12 +1,14 @@
+import { CommonType } from '../model/typeAlias/TypeAlias';
+
 export class JsonUtils {
   private constructor() {
   }
 
-  static stringify(data: any, space: number = 2): string {
+  static stringify(data: CommonType, space: number = 2): string {
     return JSON.stringify(data, null, space);
   }
 
-  static parse(jsonString: string): any {
+  static parse(jsonString: string): CommonType {
     return JSON.parse(jsonString);
   }
 }

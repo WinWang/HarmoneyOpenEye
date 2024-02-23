@@ -3,7 +3,7 @@ export type CategoryModel = CategoryModelChild[];
 export interface CategoryModelChild {
   id: number;
   name: string;
-  alias?: any;
+  alias?: string;
   description: string;
   bgPicture: string;
   bgColor: string;

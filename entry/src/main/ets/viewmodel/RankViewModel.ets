@@ -1,8 +1,9 @@
 import { getRankList } from '../http/apiService';
+import { HomeModelIssueListItemList } from '../model/HomeModel';
 import { BaseViewModel, ResultCallback } from './BaseViewModel';
 
 export class RankViewModel extends BaseViewModel {
-  async getRankList(rankType: string, resultCallback?: ResultCallback) {
+  async getRankList(rankType: string, resultCallback?: ResultCallback<HomeModelIssueListItemList[]>) {
     await this.httpRequest()
       .promise(getRankList(rankType), true)
       .then((result) => {

@@ -2,7 +2,7 @@ import { CommonTopBar } from '../../views/CommonTopBar'
 import { StateComponent } from '../../views/StateComponent'
 import { StorageKeys } from '../../constants/StorageKeys'
 import { ViewStateConstant } from '../../constants/ViewStateConstant'
-import {StorageUtils } from '../../utils/StorageUtils'
+import { StorageUtils } from '../../utils/StorageUtils'
 import showToast from '../../utils/ToastUtils'
 import TestViewModel from '../../viewmodel/TestViewModel'
 
@@ -41,7 +41,8 @@ struct TestPage {
         viewState: this.viewState,
         retryCallback: () => {
           this.loadNet()
-        } }) {
+        }
+      }) {
         Scroll() {
           Text(this.message).fontSize($r('app.float.size_text_20'))
         }

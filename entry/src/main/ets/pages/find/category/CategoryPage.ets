@@ -7,6 +7,7 @@ import { Router } from '../../../route/Router'
 import ImageRegexUtils from '../../../utils/ImageRegexUtils'
 import { LogUtils } from '../../../utils/LogUtils'
 import CategoryViewModel from '../../../viewmodel/CategoryViewModel'
+import { CategoryRouteParams } from '../../../route/RouteParams'
 
 @Component
 export struct CategoryPage {
@@ -57,9 +58,11 @@ export struct CategoryPage {
 
   build() {
     Stack() {
-      StateComponent({ viewState: this.viewState, retryCallback: () => {
-        this.loadNet()
-      } }) {
+      StateComponent({
+        viewState: this.viewState, retryCallback: () => {
+          this.loadNet()
+        }
+      }) {
         Grid() {
           LazyForEach(this.dataSource, (item: CategoryModelChild, index: number) => {
             GridItem() {
@@ -77,7 +80,7 @@ export struct CategoryPage {
                 "headerImage": item.headerImage,
                 "title": item.name,
                 "id": item.id
-              })
+              } as CategoryRouteParams)
             })
           })
         }

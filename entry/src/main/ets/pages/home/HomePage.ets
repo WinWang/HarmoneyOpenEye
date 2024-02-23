@@ -9,6 +9,7 @@ import { CommonSkeleton } from '../../skelton/CommonSkeleton'
 import { LogUtils } from '../../utils/LogUtils'
 import HomeViewModel from '../../viewmodel/HomeViewModel'
 import { HomeListItemComponent } from './component/HomeListItemComponent'
+import { CategoryRouteParams } from '../../route/RouteParams'
 
 /**
  * 首页
@@ -61,7 +62,10 @@ export struct HomePage {
               ForEach(this.dataList, (item: HomeModelIssueListItemList, index: number) => {
                 ListItem() {
                   HomeListItemComponent({ item: item }).onClick(() => {
-                    Router.push(RoutePath.DetailPage, { "id": item?.data?.id, playUrl: item?.data?.playUrl })
+                    Router.push(RoutePath.DetailPage, {
+                      "id": item?.data?.id,
+                      "playUrl": item?.data?.playUrl
+                    } as CategoryRouteParams)
                   })
                 }
               })

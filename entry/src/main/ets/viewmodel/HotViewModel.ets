@@ -1,7 +1,8 @@
+import { TabItem } from '../model/TabItem';
 import { BaseViewModel } from './BaseViewModel';
 
 export class HotViewModel extends BaseViewModel {
-  hotTabTitle = [
+  hotTabTitle: Array<TabItem> = [
     {
       index: 0,
       title: "周排行",

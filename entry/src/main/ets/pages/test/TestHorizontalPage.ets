@@ -2,7 +2,6 @@ import { LogUtils } from '../../utils/LogUtils'
 import { CommonTopBar } from '../../views/CommonTopBar'
 
 
-
 /**
  * 这种方式实现的不可取，初始化N个Scroller+复用滚动同步太麻烦了
  */
@@ -25,7 +24,7 @@ struct TestHorizontalPage {
     Column() {
       CommonTopBar({ title: "联动滚动1", alpha: 1 })
       List() {
-        ForEach(this.dataList, (item, index) => {
+        ForEach(this.dataList, (item: number, index) => {
           ListItem() {
             Row() {
               Text(`左边${item}`).width(100).textAlign(TextAlign.Center)
@@ -80,6 +79,7 @@ struct TestHorizontalPage {
             }
             .width("100%")
             .height(100)
+
             // .enabled((this.scrollIndex == -1 || this.scrollIndex == index) ? true : false)
           }
         })

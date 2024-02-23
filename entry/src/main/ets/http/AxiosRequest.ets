@@ -1,5 +1,5 @@
-import AxiosHttpRequest from './AxiosHttp'
-import { AxiosError, AxiosRequestHeaders } from '@ohos/axios';
+import AxiosHttpRequest, { HttpRequestConfig } from './AxiosHttp'
+import { AxiosError, AxiosRequestHeaders, AxiosResponse } from '@ohos/axios';
 import { LogUtils } from '../utils/LogUtils';
 import showToast from '../utils/ToastUtils';
 import { hideLoadingDialog, showLoadingDialog } from '../utils/DialogUtils';
@@ -8,6 +8,7 @@ import { StorageKeys } from '../constants/StorageKeys';
 import { JsonUtils } from '../utils/JsonUtils';
 import { Router } from '../route/Router';
 import { RoutePath } from '../route/RoutePath';
+import { CommonType } from '../model/typeAlias/TypeAlias';
 
 /**
  * axios请求客户端创建
@@ -39,7 +40,8 @@ const axiosClient = new AxiosHttpRequest({
           if (config.needJumpToLogin) {
             Router.push(RoutePath.TestPage)
           }
-          throw new AxiosError("请登录")
+          // throw new AxiosError("请登录","-100")
+          throw new Error("请登录")
         }
       }
       return config;
@@ -51,15 +53,15 @@ const axiosClient = new AxiosHttpRequest({
       }
       return err;
     },
-    responseInterceptor: (response) => {
+    responseInterceptor: (response: AxiosResponse) => {
       //优先执行自己的请求响应拦截器，在执行通用请求request的
       if (axiosClient.config.showLoading) {
         hideLoadingDialog()
       }
       LogUtils.debug('网络请求响应Response:', `\n${JsonUtils.stringify(response.data)}`);
       if (response.status === 200) {
-        // @ts-ignore
-        const checkResultCode = response.config.checkResultCode
+        let config = response.config as HttpRequestConfig
+        const checkResultCode = config.checkResultCode
         if (checkResultCode && response.data.errorCode != 0) {
           showToast(response.data.errorMsg)
           return Promise.reject(response)
@@ -80,37 +82,37 @@ const axiosClient = new AxiosHttpRequest({
   }
 });
 
-export function errorHandler(error: any) {
+export function errorHandler(error: CommonType) {
   if (error instanceof AxiosError) {
     showToast(error.message)
-  } else if (error != undefined && error.response != undefined && error.response.status) {
-    switch (error.response.status) {
-    // 401: 未登录
-    // 未登录则跳转登录页面，并携带当前页面的路径
-    // 在登录成功后返回当前页面，这一步需要在登录页操作。
-      case 401:
-
-        break;
-    // 403 token过期
-    // 登录过期对用户进行提示
-    // 清除本地token和清空vuex中token对象
-    // 跳转登录页面
-      case 403:
-        showToast("登录过期，请重新登录")
-      // 清除token
-      // localStorage.removeItem('token');
-        break;
-    // 404请求不存在
-      case 404:
-        showToast("网络请求不存在")
-        break;
-
-    // 其他错误，直接抛出错误提示
-      default:
-        showToast(error.response.data.message)
-    }
-
   }
+  // } else if (error != undefined && error.response != undefined && error.response.status) {
+  //   switch (error.response.status) {
+  //   // 401: 未登录
+  //   // 未登录则跳转登录页面，并携带当前页面的路径
+  //   // 在登录成功后返回当前页面，这一步需要在登录页操作。
+  //     case 401:
+  //
+  //       break;
+  //   // 403 token过期
+  //   // 登录过期对用户进行提示
+  //   // 清除本地token和清空vuex中token对象
+  //   // 跳转登录页面
+  //     case 403:
+  //       showToast("登录过期，请重新登录")
+  //     // 清除token
+  //     // localStorage.removeItem('token');
+  //       break;
+  //   // 404请求不存在
+  //     case 404:
+  //       showToast("网络请求不存在")
+  //       break;
+  //
+  //   // 其他错误，直接抛出错误提示
+  //     default:
+  //       showToast(error.response.data.message)
+  //   }
+  // }
 }
 
 export default axiosClient;

@@ -4,8 +4,8 @@ import { StateComponent } from '../../views/StateComponent'
 import { VideoComponent } from '../../views/VideoComponent'
 import { ViewStateConstant } from '../../constants/ViewStateConstant'
 import { TopicDetailModel, TopicDetailModelItemList } from '../../model/TopicDetailModel'
-import { LogUtils } from '../../utils/LogUtils'
 import TopicDetailViewModel from '../../viewmodel/TopicDetailViewModel'
+import { CommonRouteParams } from '../../route/RouteParams'
 
 
 @Entry
@@ -18,10 +18,10 @@ struct TopicDetailPage {
   @State isAutoPlay: boolean = true
   @State showControls: boolean = true
   @State playUrl: string = ""
-  private controller: VideoController = new VideoController()
 
   aboutToAppear() {
-    TopicDetailViewModel.topicId = router.getParams()["id"]
+    let routeParams = router.getParams() as CommonRouteParams
+    TopicDetailViewModel.topicId = routeParams.id
     TopicDetailViewModel.observeState((state) => this.viewState = state)
     this.loadNet()
   }
@@ -29,7 +29,7 @@ struct TopicDetailPage {
   loadNet() {
     TopicDetailViewModel.getTopicDetailList((result) => {
       this.detailData = result
-      this.title = this.detailData.brief
+      this.title = this.detailData.brief || ""
     })
   }
 
@@ -37,9 +37,11 @@ struct TopicDetailPage {
     Column() {
       CommonTopBar({ title: this.title, alpha: 1 })
       Stack() {
-        StateComponent({ viewState: this.viewState, retryCallback: () => {
-          this.loadNet()
-        } }) {
+        StateComponent({
+          viewState: this.viewState, retryCallback: () => {
+            this.loadNet()
+          }
+        }) {
           List() {
             ListItem() {
               this.topicHeader()

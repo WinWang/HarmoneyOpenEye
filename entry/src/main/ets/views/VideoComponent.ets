@@ -12,7 +12,7 @@ export struct VideoComponent {
   //页面loading是否可见控制
   @State showLoading: boolean = true
   //控制器
-  private controller: VideoController
+  private controller?: VideoController
   //是否自动播放
   private isAutoPlay: boolean = false
 

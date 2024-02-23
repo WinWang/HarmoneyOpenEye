@@ -8,8 +8,8 @@ export struct VideoBottomComponent {
   @State viewState: string = ViewStateConstant.VIEW_STATE_LOADING
   @State relationDataList: HomeModelIssueListItemList[] = []
   @State playIndex: number = -1
-  private onItemClick: (playUrl: string) => void
-  private relationId: number
+  private onItemClick?: (playUrl: string) => void
+  private relationId: number = -1
 
   aboutToAppear() {
     VideoDetailViewModel.observeState((state) => this.viewState = state)
@@ -25,15 +25,17 @@ export struct VideoBottomComponent {
 
   build() {
     Stack() {
-      StateComponent({ viewState: this.viewState, retryCallback: () => {
-        this.loadNet()
-      } }) {
+      StateComponent({
+        viewState: this.viewState, retryCallback: () => {
+          this.loadNet()
+        }
+      }) {
         List() {
           ForEach(this.relationDataList, (item: HomeModelIssueListItemList, index: number) => {
             ListItem() {
               this.detailItemBuilder(item, index)
             }.onClick(() => {
-              this.onItemClick?.(item.data.playUrl)
+              this.onItemClick?.(item.data?.playUrl || "")
               this.playIndex = index
             })
           })

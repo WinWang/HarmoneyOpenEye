@@ -1,55 +1,54 @@
 import { ViewStateConstant } from '../constants/ViewStateConstant';
 import { ApiResponse } from './AxiosHttp';
-import axios from "@ohos/axios"
+import axios from '@ohos/axios';
+import { CommonType } from '../model/typeAlias/TypeAlias';
 
 
-/**
- * 定义请求状态的hooks，根据请求接口来使用,需要配置页面多状态的StateComponent一起使用
- * 本来想类似React或Vue中使用hook的方式，但是ArkTs没有组件状态共享在组件外使用的方法，退而求其次使用回调实现
- */
-type LoadStateResult = {
+export interface LoadStateResult {
   promise: <T>(requestPromise: Promise<T>, showLoadingState?: boolean) => Promise<T>
 }
 
-const useRequestStatus = (stateCallback?: (state: string) => void, checkResult: boolean = false): LoadStateResult => {
+function updateViewState(state: string, stateCallback?: (state: string) => void) {
+  stateCallback?.(state)
+}
 
-  function updateViewState(state: string) {
-    stateCallback?.(state)
+function run<T>(requestPromise: Promise<T>, checkResult: boolean, showLoadingState?: boolean, stateCallback?: (state: string) => void): Promise<T> {
+  if (showLoadingState !== false) {
+    updateViewState(ViewStateConstant.VIEW_STATE_LOADING, stateCallback)
   }
-
-  function run<T>(requestPromise: Promise<T>, showLoadingState: boolean): Promise<T> {
-    if (showLoadingState !== false) {
-      updateViewState(ViewStateConstant.VIEW_STATE_LOADING)
-    }
-    return new Promise<T>((resolve, reject) => {
-      requestPromise.then((res) => {
-        if (checkResult) {
-          const result = res as unknown as ApiResponse;
-          const resultData = result.data;
-          if (result.errorCode !== 0) {
-            updateViewState(ViewStateConstant.VIEW_STATE_ERROR)
-          } else if (Array.isArray(resultData) && resultData.length === 0) {
-            updateViewState(ViewStateConstant.VIEW_STATE_EMPTY)
-          } else {
-            updateViewState(ViewStateConstant.VIEW_STATE_SUCCESS)
-          }
+  return new Promise<T>((resolve, reject) => {
+    requestPromise.then((res) => {
+      if (checkResult) {
+        const result = res as CommonType as ApiResponse;
+        const resultData = result.data;
+        if (result.errorCode !== 0) {
+          updateViewState(ViewStateConstant.VIEW_STATE_ERROR, stateCallback)
+        } else if (Array.isArray(resultData) && resultData.length === 0) {
+          updateViewState(ViewStateConstant.VIEW_STATE_EMPTY, stateCallback)
         } else {
-          updateViewState(ViewStateConstant.VIEW_STATE_SUCCESS)
+          updateViewState(ViewStateConstant.VIEW_STATE_SUCCESS, stateCallback)
         }
-        resolve(res);
-      }).catch((error) => {
-        if (axios.isAxiosError(error)) {
-          updateViewState(ViewStateConstant.VIEW_STATE_NETWORK_ERROR)
-        } else {
-          updateViewState(ViewStateConstant.VIEW_STATE_ERROR)
-        }
-        reject(error);
-      })
+      } else {
+        updateViewState(ViewStateConstant.VIEW_STATE_SUCCESS, stateCallback)
+      }
+      resolve(res);
+    }).catch((error: CommonType) => {
+      if (axios.isAxiosError(error)) {
+        updateViewState(ViewStateConstant.VIEW_STATE_NETWORK_ERROR, stateCallback)
+      } else {
+        updateViewState(ViewStateConstant.VIEW_STATE_ERROR, stateCallback)
+      }
+      reject(error);
     })
-  }
+  })
+}
 
-  return { promise: run };
+function useRequestStatus(stateCallback?: (state: string) => void, checkResult: boolean = false): LoadStateResult {
+  return {
+    promise: (requestPromise, showLoadingState) => run(requestPromise, checkResult, showLoadingState, stateCallback)
+  };
 }
 
 export default useRequestStatus;
+
 

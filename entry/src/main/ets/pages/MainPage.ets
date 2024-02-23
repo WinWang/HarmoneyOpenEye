@@ -29,11 +29,11 @@ struct MainPage {
 
   aboutToAppear() {
     emitter.on(loadingEvent, (event) => {
-      if (event.data.showLoading == true && !this.loadingShow) {
+      if (event.data?.showLoading == true && !this.loadingShow) {
         this.loadingShow = true
         this.loadingTips = event.data.loadingTips
         this.loadingDialogController.open()
-      } else if (event.data.showLoading == false) {
+      } else if (event.data?.showLoading == false) {
         this.loadingDialogController.close()
         this.loadingShow = false
       }
@@ -41,7 +41,6 @@ struct MainPage {
   }
 
   aboutToDisappear() {
-    this.loadingDialogController = null
     emitter.off(EventKeys.LOADING_DIALOG_EVENT)
   }
 
@@ -90,7 +89,8 @@ struct MainPage {
     LogUtils.error("页面不可见>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
   }
 
-  @Builder TabBottom(item: TabItem, index: number) {
+  @Builder
+  TabBottom(item: TabItem, index: number) {
     Column() {
       Image(this.selectedIndex == index ? item.imageActivated : item.imageOriginal)
         .height($r('app.float.tab_image_size'))

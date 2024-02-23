@@ -28,12 +28,13 @@ export struct CustomTabLayout {
     Flex({ direction: FlexDirection.Row, justifyContent: this.flexAlign }) {
       ForEach(this.tabTitle, (item: string, index: number) => {
         this.TabBuilder(index, item)
-      }, item => item.index)
+      }, (item: string, index: number) => `${item}-${index}`)
     }
     .backgroundColor($r("app.color.color_red"))
   }
 
-  @Builder TabBuilder(index: number, name: string) {
+  @Builder
+  TabBuilder(index: number, name: string) {
     Column() {
       Text(name)
         .fontColor(this.currentIndex === index ? $r("app.color.color_white") : $r("app.color.color_f5f5f5"))

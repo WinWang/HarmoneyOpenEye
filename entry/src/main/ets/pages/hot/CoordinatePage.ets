@@ -3,6 +3,7 @@ import { LogUtils } from '../../utils/LogUtils'
 import HotViewModel from '../../viewmodel/HotViewModel'
 import { RankPage } from './rank/RankPage'
 import { CustomTabLayout } from '../../views/CustomTabLayout'
+import { TabItem } from '../../model/TabItem'
 
 @Entry
 @Component
@@ -21,7 +22,7 @@ struct CoordinatePage {
 
   aboutToAppear() {
     HotViewModel.hotTabTitle.forEach((item) => {
-      this.tabList.push(item.title)
+      this.tabList.push(item.title || "")
     })
     this.hotCurrentIndex = 0
   }
@@ -31,7 +32,8 @@ struct CoordinatePage {
       CommonTopBar({ title: "热门", backButton: true, alpha: this.topBarAlpha })
         .zIndex(10)
       CustomTabLayout(
-        { currentIndex: $hotCurrentIndex,
+        {
+          currentIndex: $hotCurrentIndex,
           tabTitle: $tabList,
           tabSelectCallback: (position, item) => {
             this.hotCurrentIndex = position
@@ -46,13 +48,13 @@ struct CoordinatePage {
             .height($r("app.float.size_300"))
             .width("100%")
           Swiper(this.swiperController) {
-            ForEach(HotViewModel.hotTabTitle, (tabItem, index) => {
+            ForEach(HotViewModel.hotTabTitle, (tabItem: TabItem, index) => {
               RankPage({
                 rankType: tabItem.rankType,
                 positionIndex: index,
                 hasInit: index == 0 ? true : false
               })
-            }, item => item)
+            }, (item: TabItem, index: number) => `${item.rankType}-${index}`)
           }
           .autoPlay(false)
           .indicator(false) // 默认开启指示点

@@ -7,22 +7,12 @@ import { TopicDetailModel } from '../model/TopicDetailModel'
 import { TopicModel } from '../model/TopicModel'
 import { ApiResponse } from './AxiosHttp'
 import axiosClient from './AxiosRequest'
-import httpClient from './request'
+import { AxiosHeaders } from '@ohos/axios'
 
 let baseUrl = "https://baobab.kaiyanapp.com/"
 let wanAndroidUrl = "https://www.wanandroid.com/"
+const commonHeader: AxiosHeaders = new AxiosHeaders()
 
-/**
- * 请求首页数据--系统http请求
- * @param date
- * @returns
- */
-export function getHomeList(date: string = "") {
-  return httpClient.get<HomeModel>({
-    url: baseUrl + "api/v2/feed",
-    extraData: { "date": date }
-  })
-}
 /**
  * 请求首页数据-axios客户端请求
  * @param date
@@ -32,8 +22,8 @@ export function getHomeListAxios(date: string = "") {
   return axiosClient.get<HomeModel>({
     url: baseUrl + "api/v2/feed",
     params: { "date": date },
-    showLoading: true
-    // headers: { "Accept": "application/json" } as AxiosRequestHeaders
+    showLoading: true,
+    headers: commonHeader
   })
 }
 
@@ -44,7 +34,8 @@ export function getFocusData(pageIndex: number = 0) {
   return axiosClient.get<FocusModel>(
     {
       url: baseUrl + "api/v4/tabs/follow",
-      params: { "start": pageIndex }
+      params: { "start": pageIndex },
+      headers: commonHeader
     }
   )
 }
@@ -58,7 +49,8 @@ export function getCategories() {
     url: baseUrl + "api/v4/categories",
     showLoading: true,
     checkLoginState: true,
-    needJumpToLogin: true
+    needJumpToLogin: true,
+    headers: commonHeader
   })
 }
 
@@ -69,7 +61,8 @@ export function getTopicData(start: number = 0) {
   return axiosClient.get<TopicModel>(
     {
       url: baseUrl + "api/v3/specialTopics",
-      params: { "start": start }
+      params: { "start": start },
+      headers: commonHeader
     }
   )
 }
@@ -84,7 +77,8 @@ export function getRankList(rankType: string) {
   return axiosClient.get<HomeModel>(
     {
       url: baseUrl + "api/v4/rankList/videos",
-      params: { "strategy": rankType }
+      params: { "strategy": rankType },
+      headers: commonHeader
     }
   )
 }
@@ -96,7 +90,8 @@ export function getRankList(rankType: string) {
 export function getTopicDetailList(id: number) {
   return axiosClient.get<TopicDetailModel>(
     {
-      url: baseUrl + "api/v3/lightTopics/internal/" + id
+      url: baseUrl + "api/v3/lightTopics/internal/" + id,
+      headers: commonHeader
     }
   )
 }
@@ -109,7 +104,8 @@ export function getRelationList(id: number) {
   return axiosClient.get<HomeModel>(
     {
       url: baseUrl + "api/v4/video/related",
-      params: { "id": id }
+      params: { "id": id },
+      headers: commonHeader
     }
   )
 }
@@ -128,7 +124,8 @@ export function getCategoryDetailList(id: number, start: number) {
         "start": start,
         "udid": CommonConstants.UUID,
         deviceModel: CommonConstants.DEVICE_NUM
-      }
+      },
+      headers: commonHeader
     }
   )
 }
@@ -142,7 +139,8 @@ export function getWanAndroidBanner() {
     {
       url: wanAndroidUrl + "/banner/json",
       checkResultCode: true,
-      showLoading: true
+      showLoading: true,
+      headers: commonHeader
     }
   )
 }

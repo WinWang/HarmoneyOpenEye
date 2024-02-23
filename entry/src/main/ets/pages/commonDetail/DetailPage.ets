@@ -1,8 +1,8 @@
 import router from '@ohos.router'
 import { CommonTopBar } from '../../views/CommonTopBar'
 import { VideoComponent } from '../../views/VideoComponent'
-import { LogUtils } from '../../utils/LogUtils'
 import { VideoBottomComponent } from './component/VideoBottomComponent'
+import { CategoryRouteParams } from '../../route/RouteParams'
 
 @Entry
 @Component
@@ -14,8 +14,9 @@ struct DetailPage {
   private controller: VideoController = new VideoController()
 
   aboutToAppear() {
-    this.relationId = router.getParams()['id']
-    this.playUrl = router.getParams()['playUrl']
+    let routerParams = router.getParams() as CategoryRouteParams
+    this.relationId = routerParams.id
+    this.playUrl = routerParams.playUrl
   }
 
   build() {
@@ -26,7 +27,8 @@ struct DetailPage {
         relationId: this.relationId,
         onItemClick: (playUrl) => {
           this.playUrl = playUrl
-        } }
+        }
+      }
       ).layoutWeight(1)
     }
     .width("100%")

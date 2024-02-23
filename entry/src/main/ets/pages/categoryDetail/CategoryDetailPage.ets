@@ -10,6 +10,7 @@ import ImageRegexUtils from '../../utils/ImageRegexUtils'
 import { LogUtils } from '../../utils/LogUtils'
 import categoryDetailViewModel from '../../viewmodel/CategoryDetialViewModel'
 import { HomeListItemComponent } from '../home/component/HomeListItemComponent'
+import { CategoryRouteParams } from '../../route/RouteParams'
 
 @Entry
 @Component
@@ -25,9 +26,10 @@ struct CategoryDetailPage {
 
   aboutToAppear() {
     categoryDetailViewModel.observeState((state) => this.viewState = state)
-    categoryDetailViewModel.id = router.getParams()["id"]
-    this.headerImage = router.getParams()["headerImage"]
-    this.title = router.getParams()["title"]
+    let routeParams = router.getParams() as CategoryRouteParams
+    categoryDetailViewModel.id = routeParams.id
+    this.headerImage = routeParams.headerImage
+    this.title = routeParams.title
     this.loadNet()
   }
 
@@ -46,9 +48,11 @@ struct CategoryDetailPage {
   build() {
     Stack({ alignContent: Alignment.Top }) {
       Stack() {
-        StateComponent({ viewState: this.viewState, retryCallback: () => {
-          this.loadNet()
-        } }) {
+        StateComponent({
+          viewState: this.viewState, retryCallback: () => {
+            this.loadNet()
+          }
+        }) {
           Refresh({ refreshing: $$this.isRefreshing }) {
             List({ space: 10 }) {
               ListItem() {
@@ -61,7 +65,10 @@ struct CategoryDetailPage {
                 }
                 .padding({ left: $r('app.float.size_10'), right: $r('app.float.size_10') })
                 .onClick(() => {
-                  Router.push(RoutePath.DetailPage, { "id": item.data.id, playUrl: item.data.playUrl })
+                  Router.push(RoutePath.DetailPage, {
+                    "id": item.data?.id,
+                    "playUrl": item.data?.playUrl
+                  } as CategoryRouteParams)
                 })
 
               })

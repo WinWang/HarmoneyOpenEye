@@ -13,7 +13,7 @@ export struct CommonSkeleton {
 
   build() {
     List({ space: 10 }) {
-      ForEach(this.dataList, (item, index) => {
+      ForEach(this.dataList, (item: string, index) => {
         ListItem() {
           this.itemBuild()
         }

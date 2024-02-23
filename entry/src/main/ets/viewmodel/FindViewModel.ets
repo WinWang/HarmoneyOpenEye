@@ -2,9 +2,11 @@ import useRequestStatus from '../http/useRequestStatus';
 import { getHomeListAxios } from '../http/apiService';
 import { LogUtils } from '../utils/LogUtils';
 import { BaseViewModel } from './BaseViewModel';
+import { TabItem } from '../model/TabItem';
+import { CommonType } from '../model/typeAlias/TypeAlias';
 
 export class FindViewModel extends BaseViewModel {
-  tabTitle = [
+  tabTitle: Array<TabItem> = [
     {
       index: 0,
       title: "关注"
@@ -19,7 +21,6 @@ export class FindViewModel extends BaseViewModel {
     }
   ]
 
-
   /**
    * 获取首页接口数据
    * @param callback
@@ -28,10 +29,10 @@ export class FindViewModel extends BaseViewModel {
   async getDataList(callback?: (state: string) => void) {
     return await useRequestStatus((state) => {
       callback?.(state)
-    }).promise(getHomeListAxios("")).then((res) => {
+    }).promise?.(getHomeListAxios("")).then((res) => {
       LogUtils.debug("error>>>>>" + res)
       LogUtils.debug("HomeTag", "error>>>>>" + res)
-    }).catch((e) => {
+    }).catch((e: CommonType) => {
       LogUtils.debug("error>>>>>" + e)
     })
   }

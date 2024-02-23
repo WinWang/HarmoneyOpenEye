@@ -1,11 +1,13 @@
 import { getWanAndroidBanner } from '../http/apiService';
+import { BannerDataModelData } from '../model/BannerDataModel';
 import { LogUtils } from '../utils/LogUtils';
 import { BaseViewModel, ResultCallback } from './BaseViewModel';
+
 /**
  * 测试数据类ViewModel
  */
 export class TestViewModel extends BaseViewModel {
-  async getHomeBanner(resultCallback?: ResultCallback) {
+  async getHomeBanner(resultCallback?: ResultCallback<BannerDataModelData[]>) {
     await this.httpRequest(true)
       .promise(getWanAndroidBanner())
       .then((result) => {

@@ -63,7 +63,8 @@ export struct FocusPage {
       viewState: this.viewState,
       retryCallback: () => {
         this.loadNet()
-      } }) {
+      }
+    }) {
       Refresh({ refreshing: $$this.isRefreshing, offset: 100, friction: 100 }) {
         List({ space: 10, initialIndex: 0 }) {
           ForEach(this.dataList, (item: FocusModelItemList, index: number) => {

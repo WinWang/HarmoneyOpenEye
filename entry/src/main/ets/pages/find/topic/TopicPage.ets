@@ -7,6 +7,7 @@ import { Router } from '../../../route/Router'
 import ImageRegexUtils from '../../../utils/ImageRegexUtils'
 import { LogUtils } from '../../../utils/LogUtils'
 import TopicViewModel from '../../../viewmodel/TopicViewModel'
+import { CommonRouteParams } from '../../../route/RouteParams'
 
 @Component
 export struct TopicPage {
@@ -65,9 +66,11 @@ export struct TopicPage {
 
   build() {
     Stack() {
-      StateComponent({ viewState: this.viewState, retryCallback: () => {
-        this.loadNet()
-      } }) {
+      StateComponent({
+        viewState: this.viewState, retryCallback: () => {
+          this.loadNet()
+        }
+      }) {
         Refresh({ refreshing: $$this.isRefreshing }) {
           List({ space: 10, initialIndex: 0 }) {
             ForEach(this.topicList, (item: TopicModelItemList, index: number) => {
@@ -78,7 +81,7 @@ export struct TopicPage {
                   .height($r('app.float.size_200'))
                   .border({ radius: $r('app.float.size_5') })
               }.onClick(() => {
-                Router.push(RoutePath.TopicDetailPage, { "id": item.data.id })
+                Router.push(RoutePath.TopicDetailPage, { "id": item.data.id } as CommonRouteParams)
               })
             })
             ListItem() {

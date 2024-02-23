@@ -1,3 +1,5 @@
+import { CommonType } from './typeAlias/TypeAlias';
+
 export interface HomeModel {
   issueList: HomeModelIssueList[];
   itemList: HomeModelIssueList[];
@@ -32,7 +34,7 @@ export interface HomeModelIssueListItemList {
 
 export class BannerData implements IDataSource {
   private list: HomeModelIssueListItemList[] = []
-  private listener: DataChangeListener
+  private listener?: DataChangeListener
 
   constructor(list: HomeModelIssueListItemList[]) {
     this.list = list
@@ -69,7 +71,7 @@ export interface CoverModel {
   feed: string;
   detail: string;
   blurred: string;
-  sharing?: any;
+  sharing?: boolean;
   homepage: string;
 }
 
@@ -81,7 +83,7 @@ export interface AuthorModel {
   link: string;
   latestReleaseTime: number;
   videoNum: number;
-  adTrack?: any;
+  adTrack?: CommonType;
   follow: RootObjectFollow;
   shield: RootObjectShield;
   approvedNotReadyVideoCount: number;

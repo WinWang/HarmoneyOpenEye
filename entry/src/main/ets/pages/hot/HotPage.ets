@@ -5,6 +5,7 @@ import { CommonTopBar } from '../../views/CommonTopBar'
 import { LogUtils } from '../../utils/LogUtils'
 import HotViewModel from '../../viewmodel/HotViewModel'
 import { RankPage } from './rank/RankPage'
+import { TabItem } from '../../model/TabItem'
 
 @Component
 export struct HotPage {
@@ -16,10 +17,10 @@ export struct HotPage {
       Column() {
         CommonTopBar({ title: "热门", backButton: false, alpha: 1 })
         Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
-          ForEach(HotViewModel.hotTabTitle, (tabItem, index) => {
+          ForEach(HotViewModel.hotTabTitle, (tabItem: TabItem, index) => {
             TabContent() {
               RankPage({ rankType: tabItem.rankType, positionIndex: index })
-            }.tabBar(this.TabBuilder(index, tabItem.title)).padding({ top: 0, bottom: 0 }).width("100%")
+            }.tabBar(this.TabBuilder(index, tabItem.title || "")).padding({ top: 0, bottom: 0 }).width("100%")
           })
         }
         .barHeight($r("app.float.size_50"))
@@ -40,7 +41,8 @@ export struct HotPage {
     LogUtils.error("页面不可见>>Hot")
   }
 
-  @Builder TabBuilder(index: number, name: string) {
+  @Builder
+  TabBuilder(index: number, name: string) {
     Column() {
       Text(name)
         .fontColor(this.hotCurrentIndex === index ? $r("app.color.color_white") : $r("app.color.color_f5f5f5"))

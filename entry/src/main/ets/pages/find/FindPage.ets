@@ -33,15 +33,15 @@ export struct FindPage {
         Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
           TabContent() {
             FocusPage()
-          }.tabBar(this.TabBuilder(0, FindViewModel.tabTitle[0].title))
+          }.tabBar(this.TabBuilder(0, FindViewModel.tabTitle[0].title || ""))
 
           TabContent() {
             CategoryPage()
-          }.tabBar(this.TabBuilder(1, FindViewModel.tabTitle[1].title))
+          }.tabBar(this.TabBuilder(1, FindViewModel.tabTitle[1].title || ""))
 
           TabContent() {
             TopicPage()
-          }.tabBar(this.TabBuilder(2, FindViewModel.tabTitle[2].title))
+          }.tabBar(this.TabBuilder(2, FindViewModel.tabTitle[2].title || ""))
         }
         .barHeight($r("app.float.size_50"))
         .barMode(BarMode.Fixed)
@@ -54,7 +54,8 @@ export struct FindPage {
     .height("100%")
   }
 
-  @Builder TabBuilder(index: number, name: string) {
+  @Builder
+  TabBuilder(index: number, name: string) {
     Column() {
       Text(name)
         .fontColor(this.findCurrentIndex === index ? $r("app.color.color_white") : $r("app.color.color_f5f5f5"))

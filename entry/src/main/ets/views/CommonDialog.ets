@@ -14,9 +14,9 @@ export struct CommonDialog {
   //取消按钮文案
   private negativeText = "取消"
   //确认按钮回调
-  private positiveCallback: () => void
+  private positiveCallback?: () => void
   //取消按钮回调
-  private negativeCallback: () => void
+  private negativeCallback?: () => void
   //展示确认按钮
   private showPositive = true
   //展示取消按钮

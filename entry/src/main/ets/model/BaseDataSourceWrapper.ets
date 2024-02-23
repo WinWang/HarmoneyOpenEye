@@ -3,7 +3,7 @@
  */
 export class BaseDataSourceWrapper<T> implements IDataSource{
   private list: T[] = []
-  private listener: DataChangeListener
+  private listener?: DataChangeListener
 
   constructor(list: T[]) {
     this.list = list

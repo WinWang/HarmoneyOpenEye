@@ -23,7 +23,7 @@ struct TestHorizontalPage2 {
       CommonTopBar({ title: "联动滚动2", alpha: 1 })
       Row() {
         List({ scroller: this.leftScroller }) {
-          ForEach(this.dataList, (item, index) => {
+          ForEach(this.dataList, (item: number, index) => {
             ListItem() {
               Row() {
                 Text(`左边${item}`).width(100).textAlign(TextAlign.Center)
@@ -71,7 +71,7 @@ struct TestHorizontalPage2 {
 
         Scroll(this.scrollScroller) {
           List({ scroller: this.rightScroller }) {
-            ForEach(this.dataList, (item, index) => {
+            ForEach(this.dataList, (item: number, index) => {
               ListItem() {
                 Stack({ alignContent: Alignment.Start }) {
                   Row() {
@@ -145,11 +145,11 @@ struct TestHorizontalPage2 {
           this.xScroll = offsetX
           LogUtils.debug(`1>>>>>${this.xScroll}`)
         })
-        .onScrollFrameBegin((offset, state) => {
-          let offsetX = this.scrollScroller.currentOffset().xOffset;
-          LogUtils.debug(`2>>>>>${offset}>>>>>>${offsetX}`)
-          return { offsetRemain: offset/2 }
-        })
+        // .onScrollFrameBegin((offset, state) => {
+        //   let offsetX = this.scrollScroller.currentOffset().xOffset;
+        //   LogUtils.debug(`2>>>>>${offset}>>>>>>${offsetX}`)
+        //   return { offsetRemain: offset / 2 }
+        // })
       }
       .height("100%")
       .width("100%")

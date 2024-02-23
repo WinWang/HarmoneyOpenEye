@@ -1,8 +1,8 @@
-import useRequestStatus from '../http/useRequestStatus'
+import useRequestStatus, { LoadStateResult } from '../http/useRequestStatus'
 
 export type StateCallback = (state: string) => void
 
-export type ResultCallback = (result: any) => void
+export type ResultCallback<T> = (result: T) => void
 
 export class BaseViewModel {
   private stateCallback?: StateCallback
@@ -15,7 +15,7 @@ export class BaseViewModel {
     this.stateCallback?.(state)
   }
 
-  httpRequest(checkResult?: boolean) {
-    return useRequestStatus(state => this.dispatchViewState(state), checkResult)
+  httpRequest(checkResult?: boolean): LoadStateResult {
+    return useRequestStatus((state): void => this.dispatchViewState(state), checkResult)
   }
 }

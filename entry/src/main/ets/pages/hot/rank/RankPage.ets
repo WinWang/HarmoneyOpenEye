@@ -6,6 +6,7 @@ import { Router } from '../../../route/Router'
 import { LogUtils } from '../../../utils/LogUtils'
 import { RankViewModel } from '../../../viewmodel/RankViewModel'
 import { HomeListItemComponent } from '../../home/component/HomeListItemComponent'
+import { CategoryRouteParams } from '../../../route/RouteParams'
 
 @Component
 export struct RankPage {
@@ -58,15 +59,20 @@ export struct RankPage {
 
   build() {
     Stack() {
-      StateComponent({ viewState: this.viewState, retryCallback: () => {
-        this.loadNet()
-      } }) {
+      StateComponent({
+        viewState: this.viewState, retryCallback: () => {
+          this.loadNet()
+        }
+      }) {
         List({ space: 10, initialIndex: 0 }) {
           ForEach(this.rankList, (item: HomeModelIssueListItemList, index: number) => {
             ListItem() {
               HomeListItemComponent({ item: item })
             }.onClick(() => {
-              Router.push(RoutePath.DetailPage, { "id": item.data.id, playUrl: item.data.playUrl })
+              Router.push(RoutePath.DetailPage, {
+                "id": item.data?.id,
+                "playUrl": item.data?.playUrl
+              } as CategoryRouteParams)
             })
           })
           ListItem() {
