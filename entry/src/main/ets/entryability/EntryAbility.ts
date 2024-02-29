@@ -34,7 +34,8 @@ export default class EntryAbility extends UIAbility {
 
 
       // 2.实现沉浸式效果：设置导航栏、状态栏不显示。
-      let names = ["status"];
+      // let names = ["status"];
+      let names = [];
       windowClass.setWindowSystemBarEnable(names, (err) => {
         if (err.code) {
           console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));

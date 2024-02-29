@@ -20,6 +20,7 @@ struct MainPage {
   //全局的loading
   loadingDialogController: CustomDialogController = new CustomDialogController({
     builder: LoadingDialog({ loadingTips: this.loadingTips }),
+    alignment: DialogAlignment.Center,
     autoCancel: false,
     gridCount: 2,
     cancel: () => {

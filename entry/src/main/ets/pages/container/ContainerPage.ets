@@ -21,7 +21,7 @@ struct ContainerPage {
 
   build() {
     Column() {
-      CommonTopBar({ title: this.title, alpha: 1 })
+      CommonTopBar({ title: this.title })
       Stack() {
         this.buildContent()
       }.layoutWeight(1)

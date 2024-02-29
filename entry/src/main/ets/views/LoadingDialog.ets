@@ -11,7 +11,9 @@ export struct LoadingDialog {
   controller: CustomDialogController
 
   aboutToAppear() {
-    this.rotateAngle = 360
+    setTimeout(() => {
+      this.rotateAngle = 360
+    }, 100)
     LogUtils.debug("Loading展示》》》》》")
   }
 
@@ -23,9 +25,9 @@ export struct LoadingDialog {
           .width($r("app.float.size_50"))
           .rotate({ angle: this.rotateAngle })
           .animation({
-            duration: 500,
+            duration: 1500,
             iterations: -1,
-            curve: Curve.Friction
+            curve: Curve.Smooth
           })
         Text(this.loadingTips)
           .fontSize($r('app.float.size_text_15'))

@@ -9,6 +9,7 @@
   "main": "",
   "version": "1.0.0",
   "dependencies": {
-    "@ohos/axios": "^2.1.0"
+    "@ohos/axios": "^2.1.1",
+    "@ohos/protobufjs": "^2.0.0"
   }
 }

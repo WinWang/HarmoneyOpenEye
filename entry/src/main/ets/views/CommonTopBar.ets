@@ -8,7 +8,7 @@ import { LogUtils } from '../utils/LogUtils';
 @Component
 export struct CommonTopBar {
   @Prop title: string
-  @Prop alpha: number
+  @Prop alpha: number = 1
   @State statusBarHeight: number = 0
   private titleAlignment: TextAlign = TextAlign.Center
   private backButton: boolean = true
@@ -32,7 +32,7 @@ export struct CommonTopBar {
       //2、设置系统状态栏颜色---该API废弃了，统一返回801，目前没找到好的方法设置状态栏文字的颜色，放弃了。。。。。。
       const systemBarProperties: window.SystemBarProperties = {
         //顶部状态栏颜色
-        statusBarColor: "#ffffff",
+        statusBarColor: "#d81e06",
         statusBarContentColor: "#ffffff",
         isStatusBarLightIcon: true
       }
