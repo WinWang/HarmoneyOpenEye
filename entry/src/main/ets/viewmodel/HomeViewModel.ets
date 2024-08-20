@@ -1,4 +1,5 @@
 import { getHomeListAxios } from '../http/apiService';
+import { getWarTest } from '../http/env/apiService2';
 import { HomeModelIssueListItemList } from '../model/HomeModel';
 import { LogUtils } from '../utils/LogUtils';
 import { BaseViewModel, ResultCallback } from './BaseViewModel';
@@ -39,6 +40,16 @@ export class HomeViewModel extends BaseViewModel {
         this.spliteDate(result.nextPageUrl)
       })
   }
+
+
+  async getHomeList2(resultCallback?: ResultCallback<HomeModelIssueListItemList[]>) {
+    await this.httpRequest()
+      .promise(getWarTest(), this.date == "" ? true : false)
+      .then(result => {
+
+      })
+  }
+
 
   private spliteDate(nextUrl: string) {
     let split = nextUrl.split("?");

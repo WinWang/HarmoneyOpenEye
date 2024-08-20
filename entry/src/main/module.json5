@@ -17,6 +17,9 @@
           ],
           "when":"inuse"
         }
+      },
+      {
+        "name": "ohos.permission.CRYPTO_OPERATION"
       }
     ],
     "deliveryWithInstall": true,

@@ -41,6 +41,9 @@ struct MainPage {
     })
   }
 
+
+
+
   aboutToDisappear() {
     emitter.off(EventKeys.LOADING_DIALOG_EVENT)
   }
@@ -87,6 +90,7 @@ struct MainPage {
   }
 
   onPageHide() {
+    this.getScreenResume('11')
     LogUtils.error("页面不可见>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
   }
 
@@ -116,4 +120,14 @@ struct MainPage {
     .width(CommonConstants.FULL_WIDTH_PERCENT)
     .backgroundColor($r("app.color.color_f5f5f5"))
   }
+
+  // 定义
+  getScreenResume(name: string, bust?: number, age: number = 24) {
+    if (bust) {
+      console.log(`胸围d: ${bust}`);
+    }
+    console.log(`名称: ${name}, 年龄：${age}`);
+  }
+
+
 }

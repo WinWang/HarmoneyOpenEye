@@ -74,6 +74,7 @@ export struct CommonDialog {
               this.positiveCallback?.()
               this.controller.close()
             })
+          this.contentBuilder
         }
         .height($r('app.float.size_50'))
         .width("100%")

@@ -7,7 +7,7 @@ export class CategoryDetailViewModel extends BaseViewModel {
   pageIndex: number = 0
 
   async getCategoryDetailList(resultCallback?: ResultCallback<HomeModelIssueListItemList[]>) {
-    await this.httpRequest()
+    await this.httpRequest() //返回一个LoadStateResult
       .promise(getCategoryDetailList(this.id, this.pageIndex), this.pageIndex == 0 ? true : false)
       .then((result) => {
         resultCallback?.(result.itemList)

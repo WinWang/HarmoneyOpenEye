@@ -37,6 +37,7 @@ export class StorageUtils {
    * @returns
    */
   static async get(key: string, defaultValue: ValueType = "", preferenceName: string = defaultPreferenceName) {
+    StorageUtils.getScreenResume('11',96)
     // 获取实例
     let preferences = await StorageUtils.getPreferences(preferenceName)
     return preferences.get(key, defaultValue)
@@ -62,4 +63,15 @@ export class StorageUtils {
     let preferences = await StorageUtils.getPreferences(preferenceName)
     return await preferences.clear()
   }
+
+
+
+  // 定义
+  static getScreenResume(name: string, bust?: number, age: number = 24) {
+    if (bust) {
+      console.log(`胸围d: ${bust}`);
+    }
+    console.log(`名称: ${name}, 年龄：${age}`);
+  }
+
 }

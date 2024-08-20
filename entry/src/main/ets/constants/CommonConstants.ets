@@ -205,4 +205,8 @@ export class CommonConstants {
    * @type {string}
    */
   static readonly DEVICE_NUM = "ONEPLUS%20A6000"
+
+
+  static readonly API_SECRET_KEY = "701c6ab332a91741b610103a5e507fe7";
+  static readonly API_V = '31472856'
 }

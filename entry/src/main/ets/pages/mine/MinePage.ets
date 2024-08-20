@@ -14,7 +14,7 @@ export struct MinePage {
   @State dialogTitle: Resource = $r('app.string.dialog_about_title')
   @State dialogContent: Resource = $r('app.string.project_desc')
   dialogController: CustomDialogController = new CustomDialogController({
-    builder: CommonDialog({ title: $dialogTitle, description: $dialogContent, showPositive: false }),
+    builder:CommonDialog({ title: $dialogTitle, description: $dialogContent, showPositive: false}),
     alignment: DialogAlignment.Center
   })
 
@@ -78,7 +78,7 @@ export struct MinePage {
   }
 
   @Builder
-  itemBuilder(title: string, icon: Resource, onItemClick?: () => void) {
+  itemBuilder(title: string, icon: Resource, onItemClick: () => void) {
     Stack({ alignContent: Alignment.Bottom }) {
       Row() {
         Image(icon).width($r('app.float.size_25')).height($r('app.float.size_25'))

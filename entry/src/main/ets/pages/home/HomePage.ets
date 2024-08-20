@@ -44,6 +44,9 @@ export struct HomePage {
           this.dataList = [...this.dataList, ...result]
         }
       })
+    HomeViewModel.getHomeList2((result =>{
+
+    }))
   }
 
   build() {

@@ -2,12 +2,12 @@ import { CommonConstants } from '../constants/CommonConstants'
 import { BannerDataModelData } from '../model/BannerDataModel'
 import { CategoryModel } from '../model/CategoryModel'
 import { FocusModel } from '../model/FocusModel'
-import { HomeModel } from '../model/HomeModel'
 import { TopicDetailModel } from '../model/TopicDetailModel'
 import { TopicModel } from '../model/TopicModel'
 import { ApiResponse } from './AxiosHttp'
 import axiosClient from './AxiosRequest'
 import { AxiosHeaders } from '@ohos/axios'
+import { HomeModel } from '../model/HomeModel'
 
 let baseUrl = "https://baobab.kaiyanapp.com/"
 let wanAndroidUrl = "https://www.wanandroid.com/"
@@ -22,10 +22,12 @@ export function getHomeListAxios(date: string = "") {
   return axiosClient.get<HomeModel>({
     url: baseUrl + "api/v2/feed",
     params: { "date": date },
-    showLoading: true,
     headers: commonHeader
   })
 }
+
+
+
 
 /**
  * 获取关注接口

@@ -9,6 +9,13 @@
     "pages/test/TestPage",
     "pages/hot/CoordinatePage",
     "pages/test/TestHorizontalPage",
-    "pages/test/TestHorizontalPage2"
+    "pages/test/TestHorizontalPage2",
+    "test/MyPage",
+    "test/MyPage2",
+    "test/MyPage3",
+    "test/MyPage4",
+    "test/HelloTestPage",
+    "test/list/HelloTestPage2",
+    "test/zonghe/IndexTest3"
   ]
 }

@@ -25,7 +25,9 @@ struct CategoryDetailPage {
   private scrollOffset: number = 0
 
   aboutToAppear() {
-    categoryDetailViewModel.observeState((state) => this.viewState = state)
+    categoryDetailViewModel.observeState((state) => {
+      this.viewState = state
+    })
     let routeParams = router.getParams() as CategoryRouteParams
     categoryDetailViewModel.id = routeParams.id
     this.headerImage = routeParams.headerImage
@@ -53,7 +55,7 @@ struct CategoryDetailPage {
             this.loadNet()
           }
         }) {
-          Refresh({ refreshing: $$this.isRefreshing }) {
+          Refresh({ refreshing: this.isRefreshing }) {
             List({ space: 10 }) {
               ListItem() {
                 this.listHeader()
